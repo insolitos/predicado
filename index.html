@@ -1,0 +1,2006 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mestre do Predicado - Português Europeu</title>
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --secondary: #7c3aed;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f3f4f6;
+            --bg-tertiary: #e5e7eb;
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --text-tertiary: #9ca3af;
+            --border: #d1d5db;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --shadow-lg: rgba(0, 0, 0, 0.15);
+        }
+
+        [data-theme="dark"] {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #8b5cf6;
+            --bg-primary: #111827;
+            --bg-secondary: #1f2937;
+            --bg-tertiary: #374151;
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --text-tertiary: #9ca3af;
+            --border: #374151;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --shadow-lg: rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-bottom: 100px; /* Espaço para os botões flutuantes */
+        }
+
+        header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 6px var(--shadow);
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin: 30px 0;
+            border-bottom: 2px solid var(--border);
+            overflow-x: auto;
+            padding-bottom: 2px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tab {
+            background: transparent;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tab:hover {
+            color: var(--primary);
+        }
+
+        .tab.active {
+            color: var(--primary);
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px var(--shadow);
+        }
+
+        .theory-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theory-card::before {
+            content: '📚';
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 3rem;
+            opacity: 0.1;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin: 20px 0 10px;
+            color: var(--text-primary);
+        }
+
+        .example-box {
+            background: var(--bg-tertiary);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .sentence-highlight {
+            font-size: 1.1rem;
+            margin: 10px 0;
+            padding: 15px;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .subject {
+            color: var(--error);
+            font-weight: 600;
+            border-bottom: 2px solid var(--error);
+            padding-bottom: 2px;
+        }
+
+        .predicate {
+            color: var(--success);
+            font-weight: 600;
+            border-bottom: 2px solid var(--success);
+            padding-bottom: 2px;
+        }
+
+        .predicate-part {
+            color: var(--secondary);
+            font-style: italic;
+            padding: 0 4px;
+        }
+
+        .exercise-area {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .question-counter {
+            text-align: right;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 50px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 50px;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .option-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-card:hover:not(.disabled) {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px var(--shadow-lg);
+        }
+
+        .option-card.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .option-card.correct {
+            background: #10b98120;
+            border-color: var(--success);
+            animation: correctPulse 0.6s ease;
+        }
+
+        .option-card.incorrect {
+            background: #ef444420;
+            border-color: var(--error);
+            animation: shake 0.6s ease;
+        }
+
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .drag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            min-height: 60px;
+            background: var(--bg-tertiary);
+            border: 2px dashed var(--border);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .drag-container.drag-over {
+            background: rgba(30, 64, 175, 0.1);
+            border-color: var(--primary);
+        }
+
+        .draggable {
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: grab;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            user-select: none;
+            touch-action: none;
+        }
+
+        .draggable:active {
+            cursor: grabbing;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px var(--shadow-lg);
+        }
+
+        .draggable.dragging {
+            opacity: 0.5;
+        }
+
+        .word-interactive {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 3px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .word-interactive:hover {
+            background: rgba(30, 64, 175, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .word-interactive.selected {
+            background: var(--success);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .feedback {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.success {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+        }
+
+        .feedback.error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--error);
+            color: var(--error);
+        }
+
+        .feedback.warning {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid var(--warning);
+            color: var(--warning);
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover:not(:disabled) {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow-lg);
+        }
+
+        .btn:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+
+        .btn:disabled {
+            background: var(--text-tertiary);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: var(--bg-secondary);
+        }
+
+        .actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .author-quote {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border-left: 4px solid var(--secondary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        .author-name {
+            text-align: right;
+            margin-top: 10px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            animation: modalIn 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-tertiary);
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--text-primary);
+        }
+
+        .achievement {
+            text-align: center;
+            animation: bounceIn 0.6s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .trophy {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            font-size: 2rem;
+        }
+
+        .star {
+            color: #fbbf24;
+            animation: starPop 0.6s ease;
+        }
+
+        .star:nth-child(2) { animation-delay: 0.2s; }
+        .star:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes starPop {
+            0% { transform: scale(0) rotate(0deg); }
+            50% { transform: scale(1.3) rotate(180deg); }
+            100% { transform: scale(1) rotate(360deg); }
+        }
+
+        /* Estilos adicionais */
+        .achievement-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 8px 16px var(--shadow-lg);
+            animation: slideInRight 0.5s ease, slideOutRight 0.5s ease 4.5s;
+            z-index: 1000;
+        }
+        
+        .achievement-icon {
+            font-size: 2rem;
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        .stat-card {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        .achievement-card {
+            background: var(--bg-tertiary);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-card.unlocked {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.1), rgba(124, 58, 237, 0.1));
+            border: 1px solid var(--primary);
+        }
+        
+        .achievement-card.locked {
+            opacity: 0.5;
+            filter: grayscale(1);
+        }
+        
+        .quick-actions {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 99;
+        }
+        
+        .quick-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px var(--shadow);
+            position: relative;
+        }
+        
+        .quick-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px var(--shadow-lg);
+        }
+        
+        .tooltip {
+            position: absolute;
+            left: 60px;
+            background: var(--bg-tertiary);
+            padding: 8px 12px;
+            border-radius: 8px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 4px 8px var(--shadow);
+        }
+        
+        .quick-btn:hover .tooltip {
+            opacity: 1;
+        }
+
+        /* Media queries melhoradas */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.5rem; }
+            .header-content { 
+                flex-direction: column; 
+                gap: 15px; 
+                text-align: center;
+            }
+            .nav-tabs { 
+                flex-wrap: nowrap; 
+                overflow-x: auto; 
+                -webkit-overflow-scrolling: touch;
+            }
+            .tab { 
+                font-size: 0.9rem; 
+                padding: 10px 16px; 
+            }
+            .options-grid { 
+                grid-template-columns: 1fr; 
+            }
+            .modal-content { 
+                padding: 30px 20px; 
+            }
+            .quick-actions {
+                bottom: 10px;
+                left: 10px;
+                flex-direction: row;
+            }
+            .quick-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            .tooltip {
+                display: none;
+            }
+            .exercise-area {
+                padding: 20px;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --primary: #3b82f6;
+                --primary-dark: #2563eb;
+                --secondary: #8b5cf6;
+                --bg-primary: #111827;
+                --bg-secondary: #1f2937;
+                --bg-tertiary: #374151;
+                --text-primary: #f9fafb;
+                --text-secondary: #d1d5db;
+                --text-tertiary: #9ca3af;
+                --border: #374151;
+                --shadow: rgba(0, 0, 0, 0.3);
+                --shadow-lg: rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        /* Acessibilidade */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Print styles */
+        @media print {
+            .controls, .quick-actions, .nav-tabs, .actions, .modal {
+                display: none !important;
+            }
+            
+            .content-section {
+                display: block !important;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>📝 Mestre do Predicado</h1>
+            <div class="controls">
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
+                    <span id="themeIcon" aria-hidden="true">🌙</span>
+                </button>
+                <div class="score-display" role="status" aria-live="polite">
+                    🏆 <span id="score">0</span> pontos
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav class="nav-tabs" role="tablist">
+            <button class="tab active" role="tab" aria-selected="true" aria-controls="teoria" onclick="showTab(event, 'teoria')">📚 Teoria</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="pratica" onclick="showTab(event, 'pratica')">✏️ Prática Guiada</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="desafio" onclick="showTab(event, 'desafio')">🎯 Desafio</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="surpresa" onclick="showTab(event, 'surpresa')">✨ Desafio Surpresa</button>
+        </nav>
+
+        <!-- Secção Teoria -->
+        <div id="teoria" class="content-section active" role="tabpanel" aria-labelledby="teoria-tab">
+            <div class="theory-card card">
+                <h2>O Predicado em Português Europeu</h2>
+                <p>O predicado é o elemento essencial da frase que contém a informação sobre o sujeito. Pode ser classificado em diferentes tipos:</p>
+
+                <h3>1. Predicado Verbal</h3>
+                <p>Constituído por um verbo significativo (transitivo ou intransitivo) e os seus complementos.</p>
+                <div class="example-box">
+                    <div class="sentence-highlight">
+                        <span class="subject">O João</span> <span class="predicate">leu o livro na biblioteca</span>.
+                    </div>
+                    <p>Verbo: leu | CD: o livro | Adjunto: na biblioteca</p>
+                </div>
+
+                <h3>2. Predicado Nominal</h3>
+                <p>Formado por um verbo copulativo (ser, estar, ficar, parecer, permanecer, continuar) + predicativo do sujeito.</p>
+                <div class="example-box">
+                    <div class="sentence-highlight">
+                        <span class="subject">A Maria</span> <span class="predicate">está <span class="predicate-part">feliz</span></span>.
+                    </div>
+                    <p>Verbo copulativo: está | Predicativo do sujeito: feliz</p>
+                </div>
+
+                <h3>3. Complementos do Predicado</h3>
+                
+                <h4>Complemento Direto (CD)</h4>
+                <div class="example-box">
+                    <div class="sentence-highlight">
+                        <span class="subject">Ela</span> <span class="predicate">comprou <span class="predicate-part">um carro novo</span></span>.
+                    </div>
+                    <p>CD: um carro novo (o quê?)</p>
+                </div>
+
+                <h4>Complemento Indireto (CI)</h4>
+                <div class="example-box">
+                    <div class="sentence-highlight">
+                        <span class="subject">O professor</span> <span class="predicate">deu o livro <span class="predicate-part">ao aluno</span></span>.
+                    </div>
+                    <p>CI: ao aluno (a quem?)</p>
+                </div>
+
+                <h4>Complemento Oblíquo</h4>
+                <div class="example-box">
+                    <div class="sentence-highlight">
+                        <span class="subject">Nós</span> <span class="predicate">fomos <span class="predicate-part">a Lisboa</span></span>.
+                    </div>
+                    <p>Complemento oblíquo: a Lisboa (complemento obrigatório do verbo ir)</p>
+                </div>
+
+                <h3>4. Modificadores do Predicado</h3>
+                
+                <h4>Adjunto Adverbial</h4>
+                <div class="example-box">
+                    <div class="sentence-highlight">
+                        <span class="subject">As crianças</span> <span class="predicate">brincam <span class="predicate-part">alegremente</span> <span class="predicate-part">no jardim</span></span>.
+                    </div>
+                    <p>Adjuntos: alegremente (modo), no jardim (lugar)</p>
+                </div>
+
+                <h3>5. Predicado Complexo</h3>
+                <p>Pode conter múltiplos elementos:</p>
+                <div class="example-box">
+                    <div class="sentence-highlight">
+                        <span class="subject">O Miguel</span> <span class="predicate">ofereceu <span class="predicate-part">flores</span> <span class="predicate-part">à namorada</span> <span class="predicate-part">ontem</span> <span class="predicate-part">no parque</span></span>.
+                    </div>
+                    <p>Verbo: ofereceu | CD: flores | CI: à namorada | Adjuntos: ontem (tempo), no parque (lugar)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Secção Prática Guiada -->
+        <div id="pratica" class="content-section" role="tabpanel" aria-labelledby="pratica-tab">
+            <div class="exercise-area">
+                <div class="question-counter">Questão <span id="currentQ">1</span> de <span id="totalQ">10</span></div>
+                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div class="progress" id="practiceProgress" style="width: 0%"></div>
+                </div>
+                
+                <div id="practiceContent"></div>
+                <div id="practiceFeedback" class="feedback" role="alert"></div>
+                
+                <div class="actions">
+                    <button class="btn btn-secondary" onclick="skipQuestion()">Saltar</button>
+                    <button class="btn" onclick="nextPractice()" id="nextBtn" style="display: none;">Próxima →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Secção Desafio -->
+        <div id="desafio" class="content-section" role="tabpanel" aria-labelledby="desafio-tab">
+            <div class="exercise-area">
+                <h2>🎯 Modo Desafio</h2>
+                <p>Testa os teus conhecimentos com exercícios cronometrados!</p>
+                
+                <div id="timer" style="text-align: center; font-size: 2rem; color: var(--primary); margin: 20px 0;" role="timer" aria-live="assertive">
+                    ⏱️ <span id="timeLeft">60</span>s
+                </div>
+                
+                <div id="challengeContent"></div>
+                <div id="challengeFeedback" class="feedback" role="alert"></div>
+                
+                <div class="actions">
+                    <button class="btn" onclick="startChallenge()" id="startChallengeBtn">Começar Desafio</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Secção Desafio Surpresa -->
+        <div id="surpresa" class="content-section" role="tabpanel" aria-labelledby="surpresa-tab">
+            <div class="exercise-area">
+                <h2>✨ Desafio Surpresa - Autores Portugueses</h2>
+                <p>Analisa frases de grandes autores da literatura portuguesa!</p>
+                
+                <div id="surpriseContent"></div>
+                <div id="surpriseFeedback" class="feedback" role="alert"></div>
+                
+                <div class="actions">
+                    <button class="btn" onclick="loadSurprise()">Nova Frase</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Conquistas -->
+    <div id="achievementModal" class="modal" role="dialog" aria-labelledby="achievementTitle" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()" aria-label="Fechar modal">&times;</button>
+            <div class="achievement">
+                <div class="trophy" aria-hidden="true">🏆</div>
+                <h2 id="achievementTitle">Parabéns!</h2>
+                <div class="stars" aria-hidden="true">
+                    <span class="star">⭐</span>
+                    <span class="star">⭐</span>
+                    <span class="star">⭐</span>
+                </div>
+                <p id="achievementMessage">Completaste o desafio com sucesso!</p>
+                <p style="font-size: 1.5rem; margin-top: 20px;">
+                    Pontuação: <strong id="achievementScore">0</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botões de ação rápida -->
+    <div class="quick-actions">
+        <button class="quick-btn" onclick="showStatistics()" aria-label="Ver estatísticas">
+            📊
+            <span class="tooltip">Estatísticas</span>
+        </button>
+        <button class="quick-btn" onclick="initProfessorMode()" aria-label="Modo professor">
+            🎓
+            <span class="tooltip">Modo Professor</span>
+        </button>
+        <button class="quick-btn" onclick="toggleSound()" aria-label="Alternar som">
+            <span id="soundIcon" aria-hidden="true">🔊</span>
+            <span class="tooltip">Som</span>
+        </button>
+    </div>
+
+    <script>
+        // Sistema de temas
+        let currentTheme = localStorage.getItem('theme') || 'auto';
+        
+        function applyTheme() {
+            if (currentTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.getElementById('themeIcon').textContent = '☀️';
+            } else if (currentTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                document.getElementById('themeIcon').textContent = '🌙';
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.getElementById('themeIcon').textContent = prefersDark ? '☀️' : '🌙';
+            }
+        }
+
+        function toggleTheme() {
+            const themes = ['light', 'dark', 'auto'];
+            const currentIndex = themes.indexOf(currentTheme);
+            currentTheme = themes[(currentIndex + 1) % themes.length];
+            localStorage.setItem('theme', currentTheme);
+            applyTheme();
+        }
+
+        // Navegação por separadores - CORRIGIDA
+        function showTab(event, tabName) {
+            // Remover classes active de todos os tabs e secções
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+                tab.setAttribute('aria-selected', 'false');
+            });
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Adicionar classe active ao tab clicado e à secção correspondente
+            event.target.classList.add('active');
+            event.target.setAttribute('aria-selected', 'true');
+            document.getElementById(tabName).classList.add('active');
+            
+            // Inicializar conteúdo específico do tab
+            if (tabName === 'pratica') initPractice();
+            if (tabName === 'surpresa') loadSurprise();
+        }
+
+        // Dados dos exercícios
+        const practiceExercises = [
+            {
+                type: 'multiple-choice',
+                question: 'Identifica o predicado na frase:',
+                sentence: 'Os alunos estudaram para o exame durante toda a semana.',
+                options: [
+                    'Os alunos',
+                    'estudaram para o exame durante toda a semana',
+                    'para o exame',
+                    'durante toda a semana'
+                ],
+                correct: 1,
+                explanation: 'O predicado é "estudaram para o exame durante toda a semana" - inclui o verbo e todos os seus complementos e modificadores.'
+            },
+            {
+                type: 'identify-parts',
+                question: 'Identifica os componentes do predicado:',
+                sentence: 'A professora explicou a matéria aos alunos pacientemente.',
+                predicate: 'explicou a matéria aos alunos pacientemente',
+                parts: {
+                    verbo: 'explicou',
+                    cd: 'a matéria',
+                    ci: 'aos alunos',
+                    adjunto: 'pacientemente'
+                }
+            },
+            {
+                type: 'drag-drop',
+                question: 'Constrói um predicado arrastando os elementos corretos:',
+                subject: 'O Pedro',
+                elements: ['ofereceu', 'um presente', 'à mãe', 'ontem', 'comprou', 'para a irmã'],
+                correct: ['ofereceu', 'um presente', 'à mãe'],
+                explanation: 'Predicado correto: ofereceu (verbo) + um presente (CD) + à mãe (CI)'
+            },
+            {
+                type: 'predicate-type',
+                question: 'Que tipo de predicado encontras nesta frase?',
+                sentence: 'A Lisboa é uma cidade maravilhosa.',
+                options: [
+                    'Predicado verbal',
+                    'Predicado nominal',
+                    'Predicado verbal com CD',
+                    'Predicado verbal com CI'
+                ],
+                correct: 1,
+                explanation: 'É um predicado nominal: verbo copulativo "é" + predicativo do sujeito "uma cidade maravilhosa".'
+            },
+            {
+                type: 'complete',
+                question: 'Completa o predicado nominal:',
+                sentence: 'Os resultados do teste foram _______.',
+                options: ['excelentes', 'estudaram muito', 'aos alunos', 'na escola'],
+                correct: 0,
+                explanation: 'Após o verbo copulativo "foram", precisamos de um predicativo do sujeito: "excelentes".'
+            },
+            {
+                type: 'underline',
+                question: 'Sublinha todos os adjuntos adverbiais no predicado:',
+                sentence: 'As crianças brincaram alegremente no parque durante a tarde.',
+                predicate: 'brincaram alegremente no parque durante a tarde',
+                adjuntos: ['alegremente', 'no parque', 'durante a tarde'],
+                explanation: 'Adjuntos: alegremente (modo), no parque (lugar), durante a tarde (tempo).'
+            },
+            {
+                type: 'cd-ci',
+                question: 'Identifica o complemento direto e indireto:',
+                sentence: 'O João enviou uma carta à avó.',
+                options: [
+                    { text: 'uma carta', type: 'CD' },
+                    { text: 'à avó', type: 'CI' },
+                    { text: 'O João', type: 'Sujeito' },
+                    { text: 'enviou', type: 'Verbo' }
+                ]
+            },
+            {
+                type: 'transform',
+                question: 'Transforma o predicado verbal em nominal:',
+                original: 'O tempo melhorou.',
+                options: [
+                    'O tempo está melhor.',
+                    'O tempo vai melhorar.',
+                    'O tempo melhorou muito.',
+                    'O tempo não melhorou.'
+                ],
+                correct: 0,
+                explanation: 'Transformámos o verbo "melhorou" em verbo copulativo "está" + predicativo "melhor".'
+            },
+            {
+                type: 'complex-analysis',
+                question: 'Analisa completamente este predicado complexo:',
+                sentence: 'O escritor dedicou o seu último livro aos leitores fiéis no lançamento.',
+                components: {
+                    verbo: 'dedicou',
+                    cd: 'o seu último livro',
+                    ci: 'aos leitores fiéis',
+                    adjunto_tempo: 'no lançamento'
+                }
+            },
+            {
+                type: 'error-correction',
+                question: 'Corrige o erro no predicado:',
+                sentence: 'A Maria está uma boa aluna.',
+                options: [
+                    'A Maria é uma boa aluna.',
+                    'A Maria está boa aluna.',
+                    'A Maria estar uma boa aluna.',
+                    'A Maria estão uma boa aluna.'
+                ],
+                correct: 0,
+                explanation: 'Com predicativo do sujeito permanente, usamos o verbo "ser" e não "estar".'
+            }
+        ];
+
+        const challengeExercises = [
+            {
+                sentence: 'O Presidente da República promulgou a nova lei ontem no Palácio de Belém.',
+                task: 'Identifica todos os elementos do predicado.',
+                timer: 30
+            },
+            {
+                sentence: 'Os cientistas portugueses descobriram uma nova espécie marinha.',
+                task: 'Classifica o tipo de predicado e identifica os complementos.',
+                timer: 25
+            },
+            {
+                sentence: 'Lisboa tornou-se uma cidade cosmopolita.',
+                task: 'Que tipo de predicado é este? Justifica.',
+                timer: 20
+            }
+        ];
+
+        const authorQuotes = [
+            {
+                quote: 'As palavras são como as moedas: uma pode valer por muitas, como muitas não podem valer por uma.',
+                author: 'Francisco Rodrigues Lobo',
+                sentence: 'As palavras são como as moedas.',
+                predicate: 'são como as moedas',
+                type: 'nominal',
+                analysis: 'Predicado nominal com verbo copulativo "são" e predicativo do sujeito "como as moedas".'
+            },
+            {
+                quote: 'O meu coração transbordava de ternura e de tristeza.',
+                author: 'Camilo Castelo Branco',
+                sentence: 'O meu coração transbordava de ternura e de tristeza.',
+                predicate: 'transbordava de ternura e de tristeza',
+                type: 'verbal',
+                analysis: 'Predicado verbal com complemento oblíquo "de ternura e de tristeza".'
+            },
+            {
+                quote: 'Tudo vale a pena quando a alma não é pequena.',
+                author: 'Fernando Pessoa',
+                sentence: 'Tudo vale a pena quando a alma não é pequena.',
+                predicate: 'vale a pena',
+                type: 'verbal',
+                analysis: 'Predicado verbal com expressão idiomática "vale a pena" + oração subordinada temporal.'
+            },
+            {
+                quote: 'A saudade é a presença dos ausentes.',
+                author: 'Padre António Vieira',
+                sentence: 'A saudade é a presença dos ausentes.',
+                predicate: 'é a presença dos ausentes',
+                type: 'nominal',
+                analysis: 'Predicado nominal: verbo copulativo "é" + predicativo "a presença dos ausentes".'
+            },
+            {
+                quote: 'O mar salgado, quanto do teu sal são lágrimas de Portugal!',
+                author: 'Fernando Pessoa',
+                sentence: 'Quanto do teu sal são lágrimas de Portugal!',
+                predicate: 'são lágrimas de Portugal',
+                type: 'nominal',
+                analysis: 'Predicado nominal invertido: "são" (verbo copulativo) + "lágrimas de Portugal" (predicativo).'
+            },
+            {
+                quote: 'Navegar é preciso; viver não é preciso.',
+                author: 'Fernando Pessoa',
+                sentence: 'Navegar é preciso.',
+                predicate: 'é preciso',
+                type: 'nominal',
+                analysis: 'Predicado nominal com sujeito oracional: "é" + "preciso" (predicativo do sujeito).'
+            },
+            {
+                quote: 'Lisboa oscila como uma grande barcaça amarrada no Tejo.',
+                author: 'José Cardoso Pires',
+                sentence: 'Lisboa oscila como uma grande barcaça amarrada no Tejo.',
+                predicate: 'oscila como uma grande barcaça amarrada no Tejo',
+                type: 'verbal',
+                analysis: 'Predicado verbal com comparação: verbo "oscila" + adjunto adverbial de modo.'
+            },
+            {
+                quote: 'As casas espiam-nos pelas janelas.',
+                author: 'Eugénio de Andrade',
+                sentence: 'As casas espiam-nos pelas janelas.',
+                predicate: 'espiam-nos pelas janelas',
+                type: 'verbal',
+                analysis: 'Predicado verbal: "espiam" + "-nos" (CD) + "pelas janelas" (adjunto de lugar).'
+            }
+        ];
+
+        // Variáveis globais
+        let score = parseInt(localStorage.getItem('predicateScore') || '0');
+        let currentPractice = 0;
+        let challengeTimer = null;
+        let challengeActive = false;
+        let draggedElement = null;
+
+        // Sistema de pontuação
+        function updateScore(points) {
+            score += points;
+            localStorage.setItem('predicateScore', score);
+            document.getElementById('score').textContent = score;
+            
+            // Animação
+            const scoreDisplay = document.querySelector('.score-display');
+            scoreDisplay.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                scoreDisplay.style.transform = 'scale(1)';
+            }, 300);
+        }
+
+        // Prática Guiada
+        function initPractice() {
+            currentPractice = 0;
+            loadPracticeExercise();
+        }
+
+        function loadPracticeExercise() {
+            if (currentPractice >= practiceExercises.length) {
+                showAchievement('Prática Completa!', 'Completaste todos os exercícios de prática!', 50);
+                return;
+            }
+
+            const exercise = practiceExercises[currentPractice];
+            const content = document.getElementById('practiceContent');
+            document.getElementById('currentQ').textContent = currentPractice + 1;
+            document.getElementById('totalQ').textContent = practiceExercises.length;
+            updateProgressBar('practiceProgress', currentPractice, practiceExercises.length);
+            clearFeedback('practiceFeedback');
+            document.getElementById('nextBtn').style.display = 'none';
+
+            switch (exercise.type) {
+                case 'multiple-choice':
+                    content.innerHTML = `
+                        <h3>${exercise.question}</h3>
+                        <div class="sentence-highlight">${exercise.sentence}</div>
+                        <div class="options-grid">
+                            ${exercise.options.map((opt, i) => `
+                                <div class="option-card" onclick="checkPracticeAnswer(${i}, ${exercise.correct})">
+                                    ${opt}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    break;
+
+                case 'identify-parts':
+                    content.innerHTML = `
+                        <h3>${exercise.question}</h3>
+                        <div class="sentence-highlight">${exercise.sentence}</div>
+                        <p>Predicado: <em>${exercise.predicate}</em></p>
+                        <div class="options-grid">
+                            ${Object.entries(exercise.parts).map(([key, value]) => `
+                                <div class="option-card" onclick="identifyPart('${key}', '${value}', this)">
+                                    <strong>${key.toUpperCase()}:</strong> ${value}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    break;
+
+                case 'drag-drop':
+                    content.innerHTML = `
+                        <h3>${exercise.question}</h3>
+                        <p>Sujeito: <span class="subject">${exercise.subject}</span></p>
+                        <div class="drag-container" id="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="removeDragOver(event)">
+                            <span style="color: var(--text-tertiary);">Arrasta os elementos aqui...</span>
+                        </div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px;">
+                            ${exercise.elements.map((el, i) => `
+                                <div class="draggable" draggable="true" ondragstart="drag(event)" data-value="${el}" id="drag${i}">
+                                    ${el}
+                                </div>
+                            `).join('')}
+                        </div>
+                        <button class="btn" onclick="checkDragDrop()" style="margin-top: 20px;">Verificar</button>
+                    `;
+                    break;
+
+                case 'predicate-type':
+                    content.innerHTML = `
+                        <h3>${exercise.question}</h3>
+                        <div class="sentence-highlight">${exercise.sentence}</div>
+                        <div class="options-grid">
+                            ${exercise.options.map((opt, i) => `
+                                <div class="option-card" onclick="checkPredicateType(${i}, ${exercise.correct})">
+                                    ${opt}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    break;
+
+                case 'complete':
+                    content.innerHTML = `
+                        <h3>${exercise.question}</h3>
+                        <div class="sentence-highlight">${exercise.sentence}</div>
+                        <div class="options-grid">
+                            ${exercise.options.map((opt, i) => `
+                                <div class="option-card" onclick="checkComplete(${i}, ${exercise.correct})">
+                                    ${opt}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    break;
+
+                case 'underline':
+                    const words = exercise.predicate.split(' ');
+                    content.innerHTML = `
+                        <h3>${exercise.question}</h3>
+                        <div class="sentence-highlight">${exercise.sentence}</div>
+                        <p>Clica nos adjuntos adverbiais:</p>
+                        <div style="font-size: 1.2rem; line-height: 2; margin: 20px 0;">
+                            ${words.map(word => `<span class="word-interactive" onclick="toggleUnderline(this)">${word}</span>`).join(' ')}
+                        </div>
+                        <button class="btn" onclick="checkUnderline()" style="margin-top: 20px;">Verificar</button>
+                    `;
+                    break;
+
+                case 'cd-ci':
+                    content.innerHTML = `
+                        <h3>${exercise.question}</h3>
+                        <div class="sentence-highlight">${exercise.sentence}</div>
+                        <div class="options-grid">
+                            ${exercise.options.map((opt, i) => `
+                                <div class="option-card" onclick="showLabel(this, '${opt.type}')">
+                                    ${opt.text}
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 5px;">
+                                        Clica para ver: <strong>${opt.type}</strong>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    // Auto-avançar após ver todas as opções
+                    setTimeout(() => {
+                        document.getElementById('nextBtn').style.display = 'block';
+                    }, 1000);
+                    break;
+
+                case 'transform':
+                    content.innerHTML = `
+                        <h3>${exercise.question}</h3>
+                        <div class="sentence-highlight">${exercise.original}</div>
+                        <div class="options-grid">
+                            ${exercise.options.map((opt, i) => `
+                                <div class="option-card" onclick="checkTransform(${i}, ${exercise.correct})">
+                                    ${opt}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    break;
+
+                case 'complex-analysis':
+                    content.innerHTML = `
+                        <h3>${exercise.question}</h3>
+                        <div class="sentence-highlight">${exercise.sentence}</div>
+                        <div style="margin-top: 20px;">
+                            ${Object.entries(exercise.components).map(([key, value]) => `
+                                <div class="example-box" style="margin: 10px 0;">
+                                    <strong>${key.replace('_', ' ').toUpperCase()}:</strong> ${value}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    document.getElementById('nextBtn').style.display = 'block';
+                    break;
+
+                case 'error-correction':
+                    content.innerHTML = `
+                        <h3>${exercise.question}</h3>
+                        <div class="sentence-highlight" style="border: 2px solid var(--error);">
+                            ${exercise.sentence}
+                        </div>
+                        <div class="options-grid">
+                            ${exercise.options.map((opt, i) => `
+                                <div class="option-card" onclick="checkCorrection(${i}, ${exercise.correct})">
+                                    ${opt}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    break;
+            }
+        }
+
+        // Funções de verificação - CORRIGIDAS
+        function checkPracticeAnswer(selected, correct) {
+            const options = document.querySelectorAll('.option-card');
+            options.forEach(opt => {
+                opt.style.pointerEvents = 'none';
+                opt.classList.add('disabled');
+            });
+
+            const isCorrect = selected === correct;
+            
+            if (isCorrect) {
+                options[selected].classList.add('correct');
+                showFeedback('practiceFeedback', 'success', 
+                    `✓ Correto! ${practiceExercises[currentPractice].explanation || ''}`);
+                updateScore(10);
+                userStats.correctAnswers++;
+                userStats.streakCount++;
+                playSound('correct');
+            } else {
+                options[selected].classList.add('incorrect');
+                options[correct].classList.add('correct');
+                showFeedback('practiceFeedback', 'error', 
+                    `✗ Incorreto. ${practiceExercises[currentPractice].explanation || ''}`);
+                userStats.streakCount = 0;
+                playSound('incorrect');
+            }
+            
+            userStats.exercisesCompleted++;
+            checkAchievements();
+            document.getElementById('nextBtn').style.display = 'block';
+        }
+
+        function identifyPart(key, value, element) {
+            element.classList.add('correct');
+            element.style.pointerEvents = 'none';
+            element.classList.add('disabled');
+            
+            const allCards = document.querySelectorAll('.option-card');
+            const clickedCards = document.querySelectorAll('.option-card.correct');
+            
+            if (clickedCards.length === allCards.length) {
+                showFeedback('practiceFeedback', 'success', '✓ Excelente! Identificaste todos os componentes!');
+                updateScore(15);
+                userStats.correctAnswers++;
+                userStats.exercisesCompleted++;
+                checkAchievements();
+                document.getElementById('nextBtn').style.display = 'block';
+            }
+        }
+
+        // Drag and Drop - MELHORADO
+        function allowDrop(ev) {
+            ev.preventDefault();
+            ev.currentTarget.classList.add('drag-over');
+        }
+
+        function removeDragOver(ev) {
+            ev.currentTarget.classList.remove('drag-over');
+        }
+
+        function drag(ev) {
+            draggedElement = ev.target;
+            ev.target.classList.add('dragging');
+            ev.dataTransfer.effectAllowed = 'move';
+            ev.dataTransfer.setData('text/html', ev.target.innerHTML);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            ev.currentTarget.classList.remove('drag-over');
+            
+            const placeholder = ev.currentTarget.querySelector('span');
+            if (placeholder && placeholder.style.color === 'var(--text-tertiary)') {
+                placeholder.remove();
+            }
+            
+            if (draggedElement) {
+                const clone = draggedElement.cloneNode(true);
+                clone.onclick = function() { 
+                    this.remove(); 
+                };
+                clone.draggable = false;
+                clone.style.cursor = 'pointer';
+                ev.currentTarget.appendChild(clone);
+                
+                draggedElement.classList.remove('dragging');
+                draggedElement = null;
+            }
+        }
+
+        function checkDragDrop() {
+            const dropZone = document.getElementById('dropZone');
+            const dropped = Array.from(dropZone.children)
+                .filter(child => child.getAttribute('data-value'))
+                .map(child => child.getAttribute('data-value'));
+            const exercise = practiceExercises[currentPractice];
+            
+            if (JSON.stringify(dropped) === JSON.stringify(exercise.correct)) {
+                showFeedback('practiceFeedback', 'success', 
+                    `✓ Perfeito! ${exercise.explanation}`);
+                updateScore(20);
+                userStats.correctAnswers++;
+                playSound('correct');
+            } else {
+                showFeedback('practiceFeedback', 'error', 
+                    `✗ Tenta novamente. ${exercise.explanation}`);
+                playSound('incorrect');
+            }
+            
+            userStats.exercisesCompleted++;
+            checkAchievements();
+            document.getElementById('nextBtn').style.display = 'block';
+        }
+
+        function checkPredicateType(selected, correct) {
+            checkPracticeAnswer(selected, correct);
+        }
+
+        function checkComplete(selected, correct) {
+            checkPracticeAnswer(selected, correct);
+        }
+
+        function toggleUnderline(element) {
+            element.classList.toggle('selected');
+        }
+
+        function checkUnderline() {
+            const selected = Array.from(document.querySelectorAll('.word-interactive.selected'))
+                .map(el => el.textContent);
+            const exercise = practiceExercises[currentPractice];
+            
+            const correct = exercise.adjuntos.every(adj => 
+                selected.some(sel => sel.includes(adj.split(' ')[0]))
+            );
+            
+            if (correct && selected.length === exercise.adjuntos.length) {
+                showFeedback('practiceFeedback', 'success', 
+                    `✓ Excelente! ${exercise.explanation}`);
+                updateScore(15);
+                userStats.correctAnswers++;
+                playSound('correct');
+            } else {
+                showFeedback('practiceFeedback', 'error', 
+                    `✗ Revê os adjuntos. ${exercise.explanation}`);
+                playSound('incorrect');
+            }
+            
+            userStats.exercisesCompleted++;
+            checkAchievements();
+            document.getElementById('nextBtn').style.display = 'block';
+        }
+
+        function showLabel(element, type) {
+            element.classList.add('correct');
+            element.style.pointerEvents = 'none';
+            element.classList.add('disabled');
+        }
+
+        function checkTransform(selected, correct) {
+            checkPracticeAnswer(selected, correct);
+        }
+
+        function checkCorrection(selected, correct) {
+            checkPracticeAnswer(selected, correct);
+        }
+
+        // Modo Desafio - CORRIGIDO
+        function startChallenge() {
+            if (challengeActive) return;
+            
+            challengeActive = true;
+            let timeLeft = 60;
+            let questionIndex = 0;
+            let questionsAnswered = 0;
+            
+            const timerDisplay = document.getElementById('timeLeft');
+            const content = document.getElementById('challengeContent');
+            const startBtn = document.getElementById('startChallengeBtn');
+            startBtn.disabled = true;
+            
+            function loadChallengeQuestion() {
+                if (questionIndex >= challengeExercises.length) {
+                    questionIndex = 0; // Reiniciar questões
+                }
+                
+                const exercise = challengeExercises[questionIndex];
+                content.innerHTML = `
+                    <h3>${exercise.task}</h3>
+                    <div class="sentence-highlight">${exercise.sentence}</div>
+                    <textarea rows="4" style="width: 100%; padding: 10px; margin: 20px 0; 
+                        background: var(--bg-primary); color: var(--text-primary); 
+                        border: 1px solid var(--border); border-radius: 8px; font-family: inherit;"
+                        placeholder="Escreve a tua resposta aqui..." id="challengeAnswer"></textarea>
+                    <button class="btn" onclick="submitChallenge(${questionIndex})">Submeter</button>
+                `;
+                
+                // Focus no textarea
+                setTimeout(() => {
+                    const textarea = document.getElementById('challengeAnswer');
+                    if (textarea) textarea.focus();
+                }, 100);
+            }
+            
+            challengeTimer = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = timeLeft;
+                if (timeLeft <= 10) {
+                    timerDisplay.style.color = 'var(--error)';
+                }
+                if (timeLeft <= 0) {
+                    clearInterval(challengeTimer);
+                    challengeActive = false;
+                    startBtn.disabled = false;
+                    timerDisplay.style.color = 'var(--primary)';
+                    showAchievement('Desafio Completo!', 
+                        `Conseguiste ${questionsAnswered} respostas em 60 segundos!`, 
+                        questionsAnswered * 25);
+                }
+            }, 1000);
+            
+            loadChallengeQuestion();
+            
+            // Tornar submitChallenge acessível globalmente temporariamente
+            window.submitChallengeTemp = function(index) {
+                const answer = document.getElementById('challengeAnswer').value;
+                if (answer.trim().length > 10) {
+                    updateScore(25);
+                    questionsAnswered++;
+                    showFeedback('challengeFeedback', 'success', '✓ Resposta registada!');
+                    playSound('correct');
+                    questionIndex++;
+                    setTimeout(() => {
+                        clearFeedback('challengeFeedback');
+                        if (timeLeft > 0 && challengeActive) {
+                            loadChallengeQuestion();
+                        }
+                    }, 1000);
+                } else {
+                    showFeedback('challengeFeedback', 'warning', 'Por favor, escreve uma resposta mais completa.');
+                }
+            };
+            
+            window.submitChallenge = window.submitChallengeTemp;
+        }
+
+        function submitChallenge(index) {
+            // Esta função será sobrescrita pela função temporária em startChallenge
+        }
+
+        // Desafio Surpresa - CORRIGIDO
+        function loadSurprise() {
+            const randomQuote = authorQuotes[Math.floor(Math.random() * authorQuotes.length)];
+            const content = document.getElementById('surpriseContent');
+            
+            content.innerHTML = `
+                <div class="author-quote">
+                    "${randomQuote.quote}"
+                    <div class="author-name">— ${randomQuote.author}</div>
+                </div>
+                
+                <h3>Analisa o predicado na frase destacada:</h3>
+                <div class="sentence-highlight">${randomQuote.sentence}</div>
+                
+                <div style="margin: 20px 0;">
+                    <p>Clica para revelar a análise:</p>
+                    <div class="option-card" onclick="revealAnalysis(this, '${randomQuote.type}', '${encodeURIComponent(randomQuote.analysis)}')" id="analysisCard">
+                        <strong>Predicado:</strong> <em>${randomQuote.predicate}</em>
+                        <div id="fullAnalysis" style="display: none; margin-top: 15px;">
+                            <strong>Tipo:</strong> Predicado ${randomQuote.type}<br>
+                            <strong>Análise:</strong> ${randomQuote.analysis}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function revealAnalysis(element, type, encodedAnalysis) {
+            const analysis = decodeURIComponent(encodedAnalysis);
+            const fullAnalysisDiv = element.querySelector('#fullAnalysis');
+            fullAnalysisDiv.style.display = 'block';
+            element.classList.add('correct');
+            element.onclick = null;
+            element.style.cursor = 'default';
+            
+            updateScore(30);
+            userStats.authorQuotesAnalyzed++;
+            checkAchievements();
+            showFeedback('surpriseFeedback', 'success', 
+                '✓ Excelente trabalho a analisar textos literários!');
+            playSound('correct');
+        }
+
+        // Funções auxiliares
+        function updateProgressBar(barId, current, total) {
+            const percentage = ((current + 1) / total) * 100;
+            const progressBar = document.getElementById(barId);
+            progressBar.style.width = percentage + '%';
+            
+            // Atualizar aria-valuenow
+            const container = progressBar.parentElement;
+            container.setAttribute('aria-valuenow', Math.round(percentage));
+        }
+
+        function showFeedback(feedbackId, type, message) {
+            const feedback = document.getElementById(feedbackId);
+            feedback.className = `feedback ${type} show`;
+            feedback.textContent = message;
+        }
+
+        function clearFeedback(feedbackId) {
+            const feedback = document.getElementById(feedbackId);
+            feedback.className = 'feedback';
+            feedback.textContent = '';
+        }
+
+        function nextPractice() {
+            currentPractice++;
+            loadPracticeExercise();
+        }
+
+        function skipQuestion() {
+            currentPractice++;
+            loadPracticeExercise();
+        }
+
+        function showAchievement(title, message, points) {
+            updateScore(points);
+            document.getElementById('achievementTitle').textContent = title;
+            document.getElementById('achievementMessage').textContent = message;
+            document.getElementById('achievementScore').textContent = score;
+            const modal = document.getElementById('achievementModal');
+            modal.classList.add('show');
+            modal.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('achievementModal');
+            modal.classList.remove('show');
+            modal.setAttribute('aria-hidden', 'true');
+        }
+
+        // Sistema de níveis e conquistas
+        const achievements = {
+            firstStep: { name: 'Primeiro Passo', desc: 'Completa o teu primeiro exercício', points: 5, icon: '🎯' },
+            explorer: { name: 'Explorador', desc: 'Completa 5 exercícios', points: 20, icon: '🗺️' },
+            scholar: { name: 'Estudioso', desc: 'Alcança 100 pontos', points: 30, icon: '📚' },
+            master: { name: 'Mestre do Predicado', desc: 'Completa todos os tipos de exercício', points: 50, icon: '🎓' },
+            literary: { name: 'Crítico Literário', desc: 'Analisa 5 frases de autores', points: 40, icon: '✒️' },
+            speedster: { name: 'Velocista', desc: 'Completa o desafio cronometrado', points: 35, icon: '⚡' },
+            perfect: { name: 'Perfecionista', desc: '10 respostas corretas seguidas', points: 45, icon: '💎' }
+        };
+
+        let userStats = JSON.parse(localStorage.getItem('predicateStats') || '{}');
+        userStats.exercisesCompleted = userStats.exercisesCompleted || 0;
+        userStats.correctAnswers = userStats.correctAnswers || 0;
+        userStats.streakCount = userStats.streakCount || 0;
+        userStats.authorQuotesAnalyzed = userStats.authorQuotesAnalyzed || 0;
+        userStats.unlockedAchievements = userStats.unlockedAchievements || [];
+
+        function checkAchievements() {
+            // Primeiro exercício
+            if (userStats.exercisesCompleted === 1 && !userStats.unlockedAchievements.includes('firstStep')) {
+                unlockAchievement('firstStep');
+            }
+            
+            // 5 exercícios
+            if (userStats.exercisesCompleted >= 5 && !userStats.unlockedAchievements.includes('explorer')) {
+                unlockAchievement('explorer');
+            }
+            
+            // 100 pontos
+            if (score >= 100 && !userStats.unlockedAchievements.includes('scholar')) {
+                unlockAchievement('scholar');
+            }
+            
+            // 10 corretas seguidas
+            if (userStats.streakCount >= 10 && !userStats.unlockedAchievements.includes('perfect')) {
+                unlockAchievement('perfect');
+            }
+            
+            // 5 citações analisadas
+            if (userStats.authorQuotesAnalyzed >= 5 && !userStats.unlockedAchievements.includes('literary')) {
+                unlockAchievement('literary');
+            }
+            
+            saveStats();
+        }
+
+        function unlockAchievement(achievementId) {
+            const achievement = achievements[achievementId];
+            userStats.unlockedAchievements.push(achievementId);
+            
+            // Notificação especial
+            const notification = document.createElement('div');
+            notification.className = 'achievement-notification';
+            notification.innerHTML = `
+                <div class="achievement-icon">${achievement.icon}</div>
+                <div>
+                    <strong>Conquista Desbloqueada!</strong><br>
+                    ${achievement.name}
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.remove(), 5000);
+            
+            updateScore(achievement.points);
+            saveStats();
+        }
+
+        function saveStats() {
+            localStorage.setItem('predicateStats', JSON.stringify(userStats));
+        }
+
+        // Modo Professor - Criar exercícios personalizados
+        function initProfessorMode() {
+            const modal = document.createElement('div');
+            modal.className = 'modal show';
+            modal.setAttribute('role', 'dialog');
+            modal.setAttribute('aria-labelledby', 'professor-title');
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <button class="close-modal" onclick="this.closest('.modal').remove()" aria-label="Fechar modal">&times;</button>
+                    <h2 id="professor-title">🎓 Modo Professor</h2>
+                    <p>Cria o teu próprio exercício sobre predicados!</p>
+                    
+                    <div style="margin: 20px 0;">
+                        <label for="customSentence" style="display: block; margin-bottom: 5px;">Frase:</label>
+                        <input type="text" id="customSentence" placeholder="Escreve uma frase..." 
+                            style="width: 100%; padding: 10px; border: 1px solid var(--border); 
+                            border-radius: 8px; background: var(--bg-primary); color: var(--text-primary);">
+                    </div>
+                    
+                    <div style="margin: 20px 0;">
+                        <label for="customPredicate" style="display: block; margin-bottom: 5px;">Predicado:</label>
+                        <input type="text" id="customPredicate" placeholder="Identifica o predicado..." 
+                            style="width: 100%; padding: 10px; border: 1px solid var(--border); 
+                            border-radius: 8px; background: var(--bg-primary); color: var(--text-primary);">
+                    </div>
+                    
+                    <div style="margin: 20px 0;">
+                        <label for="customType" style="display: block; margin-bottom: 5px;">Tipo:</label>
+                        <select id="customType" style="width: 100%; padding: 10px; border: 1px solid var(--border); 
+                            border-radius: 8px; background: var(--bg-primary); color: var(--text-primary);">
+                            <option value="verbal">Predicado Verbal</option>
+                            <option value="nominal">Predicado Nominal</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn" onclick="saveCustomExercise()">Guardar Exercício</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function saveCustomExercise() {
+            const sentence = document.getElementById('customSentence').value.trim();
+            const predicate = document.getElementById('customPredicate').value.trim();
+            const type = document.getElementById('customType').value;
+            
+            if (sentence && predicate) {
+                const customExercises = JSON.parse(localStorage.getItem('customPredicateExercises') || '[]');
+                customExercises.push({ sentence, predicate, type, date: new Date().toISOString() });
+                localStorage.setItem('customPredicateExercises', JSON.stringify(customExercises));
+                
+                showFeedback('practiceFeedback', 'success', '✓ Exercício guardado com sucesso!');
+                document.querySelector('.modal').remove();
+            } else {
+                alert('Por favor, preenche todos os campos.');
+            }
+        }
+
+        // Sistema de som e efeitos
+        const sounds = {
+            correct: new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NAAAQAAAAAQAUAAQAgAABAIAAgAAAAIAAAADAAMAAwAAAAwAAAAABAAEAAAABAAAAAQABAAEAAAABAAAAAQABAAEAAAABAAAAAQABAAEAAAABAAAAAQABAAEAAAABAAAAAQABAAEAAAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAAAA=='),
+            incorrect: new Audio('data:audio/wav;base64,UklGRgwCAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YegBAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMTMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+        };
+
+        let soundEnabled = localStorage.getItem('soundEnabled') !== 'false';
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            localStorage.setItem('soundEnabled', soundEnabled);
+            document.getElementById('soundIcon').textContent = soundEnabled ? '🔊' : '🔇';
+        }
+
+        function playSound(type) {
+            if (soundEnabled && sounds[type]) {
+                sounds[type].currentTime = 0;
+                sounds[type].play().catch(() => {});
+            }
+        }
+
+        // Estatísticas detalhadas
+        function showStatistics() {
+            const modal = document.createElement('div');
+            modal.className = 'modal show';
+            modal.setAttribute('role', 'dialog');
+            modal.setAttribute('aria-labelledby', 'stats-title');
+            
+            const totalExercises = userStats.exercisesCompleted || 1;
+            const accuracy = Math.round((userStats.correctAnswers / totalExercises) * 100) || 0;
+            
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <button class="close-modal" onclick="this.closest('.modal').remove()" aria-label="Fechar modal">&times;</button>
+                    <h2 id="stats-title">📊 As Tuas Estatísticas</h2>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin: 30px 0;">
+                        <div class="stat-card">
+                            <div class="stat-number">${userStats.exercisesCompleted || 0}</div>
+                            <div class="stat-label">Exercícios Completos</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${userStats.correctAnswers || 0}</div>
+                            <div class="stat-label">Respostas Corretas</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${accuracy}%</div>
+                            <div class="stat-label">Taxa de Acerto</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${userStats.streakCount || 0}</div>
+                            <div class="stat-label">Sequência Atual</div>
+                        </div>
+                    </div>
+                    
+                    <h3>🏆 Conquistas</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                        ${Object.entries(achievements).map(([id, achievement]) => `
+                            <div class="achievement-card ${userStats.unlockedAchievements.includes(id) ? 'unlocked' : 'locked'}">
+                                <div class="achievement-icon">${achievement.icon}</div>
+                                <div>
+                                    <strong>${achievement.name}</strong><br>
+                                    <small>${achievement.desc}</small>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            applyTheme();
+            document.getElementById('score').textContent = score;
+            document.getElementById('soundIcon').textContent = soundEnabled ? '🔊' : '🔇';
+            
+            // Detectar mudanças no tema do sistema
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                if (currentTheme === 'auto') applyTheme();
+            });
+        });
+
+        // Atalhos de teclado
+        document.addEventListener('keydown', (e) => {
+            // Enter para próxima questão
+            if (e.key === 'Enter' && document.getElementById('nextBtn').style.display === 'block') {
+                nextPractice();
+            }
+            
+            // Esc para fechar modais
+            if (e.key === 'Escape') {
+                const modal = document.querySelector('.modal.show');
+                if (modal) modal.remove();
+            }
+        });
+
+        // Prevenir perda de dados ao sair
+        window.addEventListener('beforeunload', () => {
+            saveStats();
+        });
+    </script>
+</body>
+</html>
