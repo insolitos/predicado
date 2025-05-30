@@ -363,68 +363,6 @@
             75% { transform: translateX(10px); }
         }
 
-        .drag-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            min-height: 60px;
-            background: var(--bg-tertiary);
-            border: 2px dashed var(--border);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px 0;
-            transition: all 0.3s ease;
-        }
-
-        .drag-container.drag-over {
-            background: rgba(30, 64, 175, 0.1);
-            border-color: var(--primary);
-        }
-
-        .draggable {
-            background: var(--primary);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: grab;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            user-select: none;
-            touch-action: none;
-        }
-
-        .draggable:active {
-            cursor: grabbing;
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px var(--shadow-lg);
-        }
-
-        .draggable.dragging {
-            opacity: 0.5;
-        }
-
-        .word-interactive {
-            display: inline-block;
-            padding: 6px 12px;
-            margin: 3px;
-            background: var(--bg-tertiary);
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            user-select: none;
-        }
-
-        .word-interactive:hover {
-            background: rgba(30, 64, 175, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .word-interactive.selected {
-            background: var(--success);
-            color: white;
-            transform: scale(1.05);
-        }
-
         .feedback {
             padding: 20px;
             border-radius: 10px;
@@ -516,22 +454,6 @@
             flex-wrap: wrap;
         }
 
-        .author-quote {
-            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-            border-left: 4px solid var(--secondary);
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-            font-style: italic;
-        }
-
-        .author-name {
-            text-align: right;
-            margin-top: 10px;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
         .modal {
             position: fixed;
             top: 0;
@@ -583,114 +505,6 @@
             color: var(--text-primary);
         }
 
-        .achievement {
-            text-align: center;
-            animation: bounceIn 0.6s ease;
-        }
-
-        @keyframes bounceIn {
-            0% { transform: scale(0); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        .trophy {
-            font-size: 4rem;
-            margin-bottom: 20px;
-        }
-
-        .stars {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-            font-size: 2rem;
-        }
-
-        .star {
-            color: #fbbf24;
-            animation: starPop 0.6s ease;
-        }
-
-        .star:nth-child(2) { animation-delay: 0.2s; }
-        .star:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes starPop {
-            0% { transform: scale(0) rotate(0deg); }
-            50% { transform: scale(1.3) rotate(180deg); }
-            100% { transform: scale(1) rotate(360deg); }
-        }
-
-        .achievement-notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 20px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 8px 16px var(--shadow-lg);
-            animation: slideInRight 0.5s ease, slideOutRight 0.5s ease 4.5s;
-            z-index: 1000;
-        }
-        
-        .achievement-icon {
-            font-size: 2rem;
-        }
-        
-        @keyframes slideInRight {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        @keyframes slideOutRight {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
-        }
-        
-        .stat-card {
-            background: var(--bg-secondary);
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            border: 1px solid var(--border);
-        }
-        
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
-        
-        .achievement-card {
-            background: var(--bg-tertiary);
-            padding: 15px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .achievement-card.unlocked {
-            background: linear-gradient(135deg, rgba(30, 64, 175, 0.1), rgba(124, 58, 237, 0.1));
-            border: 1px solid var(--primary);
-        }
-        
-        .achievement-card.locked {
-            opacity: 0.5;
-            filter: grayscale(1);
-        }
-        
         .quick-actions {
             position: fixed;
             bottom: 20px;
@@ -700,7 +514,7 @@
             gap: 10px;
             z-index: 99;
         }
-        
+
         .quick-btn {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
@@ -716,12 +530,12 @@
             box-shadow: 0 4px 8px var(--shadow);
             position: relative;
         }
-        
+
         .quick-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 12px var(--shadow-lg);
         }
-        
+
         .tooltip {
             position: absolute;
             left: 60px;
@@ -734,12 +548,11 @@
             transition: opacity 0.3s ease;
             box-shadow: 0 4px 8px var(--shadow);
         }
-        
+
         .quick-btn:hover .tooltip {
             opacity: 1;
         }
 
-        /* Novos estilos para melhorias */
         .difficulty-selector {
             display: flex;
             gap: 10px;
@@ -814,7 +627,131 @@
             color: var(--primary);
         }
 
-        /* Media queries melhoradas */
+        .achievement {
+            text-align: center;
+            animation: bounceIn 0.6s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .trophy {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            font-size: 2rem;
+        }
+
+        .star {
+            color: #fbbf24;
+            animation: starPop 0.6s ease;
+        }
+
+        .star:nth-child(2) { animation-delay: 0.2s; }
+        .star:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes starPop {
+            0% { transform: scale(0) rotate(0deg); }
+            50% { transform: scale(1.3) rotate(180deg); }
+            100% { transform: scale(1) rotate(360deg); }
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .achievement-card {
+            background: var(--bg-tertiary);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-card.unlocked {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.1), rgba(124, 58, 237, 0.1));
+            border: 1px solid var(--primary);
+        }
+
+        .achievement-card.locked {
+            opacity: 0.5;
+            filter: grayscale(1);
+        }
+
+        .achievement-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 8px 16px var(--shadow-lg);
+            animation: slideInRight 0.5s ease, slideOutRight 0.5s ease 4.5s;
+            z-index: 1000;
+        }
+
+        .achievement-icon {
+            font-size: 2rem;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+
+        .author-quote {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border-left: 4px solid var(--secondary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        .author-name {
+            text-align: right;
+            margin-top: 10px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Responsividade */
         @media (max-width: 768px) {
             h1 { font-size: 1.5rem; }
             .header-content { 
@@ -855,23 +792,6 @@
             }
             .export-btn {
                 bottom: 70px;
-            }
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root:not([data-theme="light"]) {
-                --primary: #3b82f6;
-                --primary-dark: #2563eb;
-                --secondary: #8b5cf6;
-                --bg-primary: #111827;
-                --bg-secondary: #1f2937;
-                --bg-tertiary: #374151;
-                --text-primary: #f9fafb;
-                --text-secondary: #d1d5db;
-                --text-tertiary: #9ca3af;
-                --border: #374151;
-                --shadow: rgba(0, 0, 0, 0.3);
-                --shadow-lg: rgba(0, 0, 0, 0.5);
             }
         }
 
@@ -1058,7 +978,7 @@
             </div>
         </div>
 
-        <!-- Nova Secção: Tabela de Líderes -->
+        <!-- Secção Tabela de Líderes -->
         <div id="leaderboard" class="content-section" role="tabpanel" aria-labelledby="leaderboard-tab">
             <div class="card">
                 <h2>🏅 Tabela de Líderes</h2>
@@ -1114,7 +1034,830 @@
             <div style="margin-top: 30px;">
                 <label for="playerName" style="display: block; margin-bottom: 10px;">Nome do Jogador:</label>
                 <input type="text" id="playerName" placeholder="Insere o teu nome..." 
-                                                style="width: 100%; padding: 10px; border: 1px solid var(--border); 
+                    style="width: 100%; padding: 10px; border: 1px solid var(--border); 
+                    border-radius: 8px; background: var(--bg-primary); color: var(--text-primary);"
+                    onchange="savePlayerName()">
+            </div>
+        </div>
+    </div>
+
+    <!-- Botões de ação rápida -->
+    <div class="quick-actions">
+        <button class="quick-btn" onclick="showStatistics()" aria-label="Ver estatísticas">
+            📊
+            <span class="tooltip">Estatísticas</span>
+        </button>
+        <button class="quick-btn" onclick="initProfessorMode()" aria-label="Modo professor">
+            🎓
+            <span class="tooltip">Modo Professor</span>
+        </button>
+        <button class="quick-btn" onclick="toggleSound()" aria-label="Alternar som">
+            <span id="soundIcon" aria-hidden="true">🔊</span>
+            <span class="tooltip">Som</span>
+        </button>
+        <button class="quick-btn" onclick="showHelp()" aria-label="Ajuda">
+            ❓
+            <span class="tooltip">Ajuda</span>
+        </button>
+    </div>
+
+    <!-- Botão de Exportar Relatório -->
+    <button class="export-btn" onclick="exportReport()" aria-label="Exportar relatório">
+        📄 Exportar Relatório
+    </button>
+
+    <script>
+        // Dados dos exercícios
+        const exercisesByDifficulty = {
+            facil: [
+                {
+                    type: 'multiple-choice',
+                    question: 'Identifica o predicado na frase:',
+                    sentence: 'O gato dorme.',
+                    options: [
+                        'O gato',
+                        'dorme',
+                        'gato dorme',
+                        'O'
+                    ],
+                    correct: 1,
+                    explanation: 'O predicado é "dorme" - o verbo que indica a ação.',
+                    hint: 'O predicado contém sempre um verbo.'
+                },
+                {
+                    type: 'multiple-choice',
+                    question: 'Identifica o predicado na frase:',
+                    sentence: 'A Maria está feliz.',
+                    options: [
+                        'A Maria',
+                        'está feliz',
+                        'feliz',
+                        'está'
+                    ],
+                    correct: 1,
+                    explanation: 'O predicado é "está feliz" - verbo copulativo + predicativo do sujeito.',
+                    hint: 'Com verbos como "estar", o predicado inclui o que vem depois.'
+                },
+                {
+                    type: 'multiple-choice',
+                    question: 'Qual é o tipo de predicado?',
+                    sentence: 'Os pássaros cantam.',
+                    options: [
+                        'Predicado nominal',
+                        'Predicado verbal',
+                        'Predicado misto',
+                        'Não tem predicado'
+                    ],
+                    correct: 1,
+                    explanation: 'É um predicado verbal porque contém um verbo significativo.',
+                    hint: 'Verbos de ação formam predicados verbais.'
+                }
+            ],
+            medio: [
+                {
+                    type: 'multiple-choice',
+                    question: 'Identifica o predicado na frase:',
+                    sentence: 'Os alunos estudaram para o exame durante toda a semana.',
+                    options: [
+                        'Os alunos',
+                        'estudaram para o exame durante toda a semana',
+                        'para o exame',
+                        'durante toda a semana'
+                    ],
+                    correct: 1,
+                    explanation: 'O predicado é "estudaram para o exame durante toda a semana" - inclui o verbo e todos os seus complementos e modificadores.',
+                    hint: 'O predicado inclui tudo menos o sujeito.'
+                },
+                {
+                    type: 'identify-parts',
+                    question: 'Identifica os componentes do predicado:',
+                    sentence: 'A professora explicou a matéria aos alunos.',
+                    predicate: 'explicou a matéria aos alunos',
+                    parts: {
+                        verbo: 'explicou',
+                        cd: 'a matéria',
+                        ci: 'aos alunos'
+                    },
+                    hint: 'CD responde a "o quê?", CI responde a "a quem?"'
+                }
+            ],
+            dificil: [
+                {
+                    type: 'complex-analysis',
+                    question: 'Analisa completamente este predicado:',
+                    sentence: 'O escritor dedicou o seu último livro aos leitores fiéis.',
+                    components: {
+                        verbo: 'dedicou',
+                        cd: 'o seu último livro',
+                        ci: 'aos leitores fiéis'
+                    },
+                    hint: 'Identifica cada elemento e sua função sintática.'
+                },
+                {
+                    type: 'transform',
+                    question: 'Transforma o predicado verbal em nominal:',
+                    original: 'O tempo melhorou.',
+                    options: [
+                        'O tempo está melhor.',
+                        'O tempo vai melhorar.',
+                        'O tempo melhorou muito.',
+                        'O tempo não melhorou.'
+                    ],
+                    correct: 0,
+                    explanation: 'Transformámos o verbo "melhorou" em verbo copulativo "está" + predicativo "melhor".',
+                    hint: 'Usa um verbo copulativo + adjetivo.'
+                }
+            ]
+        };
+
+        const challengeExercises = [
+            {
+                sentence: 'O Presidente da República promulgou a nova lei ontem.',
+                task: 'Identifica o predicado e os seus componentes.',
+                answer: 'promulgou a nova lei ontem',
+                timer: 30
+            },
+            {
+                sentence: 'Os cientistas portugueses descobriram uma nova espécie marinha.',
+                task: 'Classifica o tipo de predicado.',
+                answer: 'Predicado verbal',
+                timer: 20
+            },
+            {
+                sentence: 'Lisboa tornou-se uma cidade cosmopolita.',
+                task: 'Que tipo de predicado é este?',
+                answer: 'Predicado nominal',
+                timer: 20
+            }
+        ];
+
+        const authorQuotes = [
+            {
+                quote: 'As palavras são como as moedas: uma pode valer por muitas.',
+                author: 'Francisco Rodrigues Lobo',
+                sentence: 'As palavras são como as moedas.',
+                predicate: 'são como as moedas',
+                type: 'nominal',
+                analysis: 'Predicado nominal com verbo copulativo "são" e predicativo "como as moedas".'
+            },
+            {
+                quote: 'O meu coração transbordava de ternura e de tristeza.',
+                author: 'Camilo Castelo Branco',
+                sentence: 'O meu coração transbordava de ternura e de tristeza.',
+                predicate: 'transbordava de ternura e de tristeza',
+                type: 'verbal',
+                analysis: 'Predicado verbal com complemento oblíquo.'
+            },
+            {
+                quote: 'Tudo vale a pena quando a alma não é pequena.',
+                author: 'Fernando Pessoa',
+                sentence: 'Tudo vale a pena.',
+                predicate: 'vale a pena',
+                type: 'verbal',
+                analysis: 'Predicado verbal com expressão idiomática.'
+            }
+        ];
+
+        // Variáveis globais
+        let score = parseInt(localStorage.getItem('predicateScore') || '0');
+        let currentPractice = 0;
+        let challengeTimer = null;
+        let challengeActive = false;
+        let currentDifficulty = 'facil';
+        let practiceExercises = exercisesByDifficulty.facil;
+        let playerName = localStorage.getItem('playerName') || 'Anónimo';
+        let soundEnabled = localStorage.getItem('soundEnabled') !== 'false';
+        let currentTheme = localStorage.getItem('theme') || 'auto';
+
+        // Sistema de estatísticas
+        let userStats = JSON.parse(localStorage.getItem('predicateStats') || JSON.stringify({
+            exercisesCompleted: 0,
+            correctAnswers: 0,
+            streakCount: 0,
+            authorQuotesAnalyzed: 0,
+            unlockedAchievements: [],
+            exercisesByDifficulty: { facil: 0, medio: 0, dificil: 0 }
+        }));
+
+        // Conquistas
+        const achievements = {
+            firstCorrect: { name: 'Primeira Vitória', desc: 'Primeira resposta correta', icon: '🎯' },
+            streak5: { name: 'Em Forma', desc: '5 respostas corretas seguidas', icon: '🔥' },
+            streak10: { name: 'Imparável', desc: '10 respostas corretas seguidas', icon: '💪' },
+            complete10: { name: 'Dedicado', desc: 'Completar 10 exercícios', icon: '📚' },
+            complete50: { name: 'Estudioso', desc: 'Completar 50 exercícios', icon: '🎓' },
+            authorMaster: { name: 'Conhecedor Literário', desc: 'Analisar 10 citações', icon: '📖' }
+        };
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            applyTheme();
+            document.getElementById('score').textContent = score;
+            document.getElementById('soundIcon').textContent = soundEnabled ? '🔊' : '🔇';
+            
+            if (playerName && playerName !== 'Anónimo') {
+                document.getElementById('playerName').value = playerName;
+            }
+        });
+
+        // Sistema de temas
+        function applyTheme() {
+            if (currentTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.getElementById('themeIcon').textContent = '☀️';
+            } else if (currentTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                document.getElementById('themeIcon').textContent = '🌙';
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.getElementById('themeIcon').textContent = prefersDark ? '☀️' : '🌙';
+            }
+        }
+
+        function toggleTheme() {
+            const themes = ['light', 'dark', 'auto'];
+            const currentIndex = themes.indexOf(currentTheme);
+            currentTheme = themes[(currentIndex + 1) % themes.length];
+            localStorage.setItem('theme', currentTheme);
+            applyTheme();
+        }
+
+        // Navegação por separadores
+        function showTab(event, tabName) {
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+                tab.setAttribute('aria-selected', 'false');
+            });
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            event.target.classList.add('active');
+            event.target.setAttribute('aria-selected', 'true');
+            document.getElementById(tabName).classList.add('active');
+            
+            if (tabName === 'pratica') initPractice();
+            if (tabName === 'surpresa') loadSurprise();
+            if (tabName === 'leaderboard') updateLeaderboard();
+        }
+
+        // Sistema de pontuação
+        function updateScore(points) {
+            score += points;
+            if (score < 0) score = 0;
+            localStorage.setItem('predicateScore', score);
+            document.getElementById('score').textContent = score;
+            
+            const scoreDisplay = document.querySelector('.score-display');
+            scoreDisplay.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                scoreDisplay.style.transform = 'scale(1)';
+            }, 300);
+            
+            updateLeaderboardEntry();
+        }
+
+        // Modo Prática
+        function initPractice() {
+            currentPractice = 0;
+            practiceExercises = exercisesByDifficulty[currentDifficulty];
+            document.getElementById('totalQ').textContent = practiceExercises.length;
+            loadPracticeExercise();
+        }
+
+        function loadPracticeExercise() {
+            if (currentPractice >= practiceExercises.length) {
+                showCompletionMessage();
+                return;
+            }
+            
+            const exercise = practiceExercises[currentPractice];
+            document.getElementById('currentQ').textContent = currentPractice + 1;
+            document.getElementById('practiceProgress').style.width = 
+                `${(currentPractice / practiceExercises.length) * 100}%`;
+            
+            document.getElementById('hintBox').classList.remove('show');
+            document.getElementById('practiceFeedback').classList.remove('show');
+            document.getElementById('nextBtn').style.display = 'none';
+            
+            let content = `
+                <h3>${exercise.question}</h3>
+                <div class="sentence-highlight">${exercise.sentence}</div>
+            `;
+            
+            if (exercise.type === 'multiple-choice') {
+                content += '<div class="options-grid">';
+                exercise.options.forEach((option, index) => {
+                    content += `
+                        <div class="option-card" onclick="checkPracticeAnswer(${index}, ${exercise.correct})">
+                            ${option}
+                        </div>
+                    `;
+                });
+                content += '</div>';
+            }
+            
+            document.getElementById('practiceContent').innerHTML = content;
+        }
+
+        function checkPracticeAnswer(selected, correct) {
+            const cards = document.querySelectorAll('.option-card');
+            cards.forEach(card => card.classList.add('disabled'));
+            
+            if (selected === correct) {
+                cards[selected].classList.add('correct');
+                showFeedback('practiceFeedback', 'success', 
+                    `✓ Correto! ${practiceExercises[currentPractice].explanation}`);
+                updateScore(10);
+                userStats.correctAnswers++;
+                userStats.streakCount++;
+                playSound('correct');
+            } else {
+                cards[selected].classList.add('incorrect');
+                cards[correct].classList.add('correct');
+                showFeedback('practiceFeedback', 'error', 
+                    `✗ Incorreto. ${practiceExercises[currentPractice].explanation}`);
+                userStats.streakCount = 0;
+                playSound('incorrect');
+            }
+            
+            userStats.exercisesCompleted++;
+            userStats.exercisesByDifficulty[currentDifficulty]++;
+            checkAchievements();
+            saveStats();
+            
+            document.getElementById('nextBtn').style.display = 'block';
+        }
+
+        function nextPractice() {
+            currentPractice++;
+            loadPracticeExercise();
+        }
+
+        function skipQuestion() {
+            currentPractice++;
+            loadPracticeExercise();
+        }
+
+        function showHint() {
+            const exercise = practiceExercises[currentPractice];
+            if (exercise.hint) {
+                document.getElementById('hintText').textContent = exercise.hint;
+                document.getElementById('hintBox').classList.add('show');
+                updateScore(-2);
+            }
+        }
+
+        function setDifficulty(level) {
+            currentDifficulty = level;
+            practiceExercises = exercisesByDifficulty[level];
+            
+            document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            currentPractice = 0;
+            loadPracticeExercise();
+        }
+
+        // Modo Desafio
+        function startChallenge() {
+            challengeActive = true;
+            let challengeIndex = 0;
+            let timeLeft = 60;
+            
+            document.getElementById('startChallengeBtn').style.display = 'none';
+            loadChallengeQuestion(challengeIndex);
+            
+            challengeTimer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timeLeft').textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    endChallenge();
+                }
+            }, 1000);
+        }
+
+        function loadChallengeQuestion(index) {
+            if (index >= challengeExercises.length) {
+                endChallenge();
+                return;
+            }
+            
+            const exercise = challengeExercises[index];
+            document.getElementById('challengeContent').innerHTML = `
+                <h3>${exercise.task}</h3>
+                <div class="sentence-highlight">${exercise.sentence}</div>
+                <div style="margin-top: 20px;">
+                    <input type="text" id="challengeAnswer" placeholder="A tua resposta..." 
+                        style="width: 100%; padding: 10px; border: 1px solid var(--border); 
+                        border-radius: 8px; background: var(--bg-primary); color: var(--text-primary);">
+                    <button class="btn" onclick="checkChallengeAnswer(${index})" style="margin-top: 10px;">
+                        Verificar
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('challengeAnswer').focus();
+        }
+
+        function checkChallengeAnswer(index) {
+            const userAnswer = document.getElementById('challengeAnswer').value.trim().toLowerCase();
+            const correctAnswer = challengeExercises[index].answer.toLowerCase();
+            
+            if (userAnswer === correctAnswer || userAnswer.includes(correctAnswer)) {
+                showFeedback('challengeFeedback', 'success', '✓ Correto! +20 pontos');
+                updateScore(20);
+                setTimeout(() => loadChallengeQuestion(index + 1), 1500);
+            } else {
+                showFeedback('challengeFeedback', 'error', '✗ Incorreto. Tenta novamente!');
+            }
+        }
+
+        function endChallenge() {
+            challengeActive = false;
+            clearInterval(challengeTimer);
+            
+            document.getElementById('challengeContent').innerHTML = `
+                <h3>Desafio Concluído!</h3>
+                <p>Parabéns por completares o desafio!</p>
+            `;
+            
+            document.getElementById('startChallengeBtn').style.display = 'block';
+            document.getElementById('timeLeft').textContent = '60';
+        }
+
+        // Modo Surpresa
+        function loadSurprise() {
+            const quote = authorQuotes[Math.floor(Math.random() * authorQuotes.length)];
+            
+            document.getElementById('surpriseContent').innerHTML = `
+                <div class="author-quote">
+                    <p>"${quote.quote}"</p>
+                    <p class="author-name">— ${quote.author}</p>
+                </div>
+                
+                <h3>Analisa o predicado na frase:</h3>
+                <div class="sentence-highlight">${quote.sentence}</div>
+                
+                <div class="options-grid" style="margin-top: 20px;">
+                    <div class="option-card" onclick="revealAnalysis('${quote.predicate}', '${quote.type}', '${quote.analysis}')">
+                        Ver Análise
+                    </div>
+                </div>
+            `;
+            
+            userStats.authorQuotesAnalyzed++;
+            saveStats();
+        }
+
+        function revealAnalysis(predicate, type, analysis) {
+            document.getElementById('surpriseContent').innerHTML += `
+                <div class="card" style="margin-top: 20px;">
+                    <h4>Análise:</h4>
+                    <p><strong>Predicado:</strong> <span class="predicate">${predicate}</span></p>
+                    <p><strong>Tipo:</strong> ${type === 'nominal' ? 'Predicado Nominal' : 'Predicado Verbal'}</p>
+                    <p><strong>Explicação:</strong> ${analysis}</p>
+                </div>
+            `;
+            
+            updateScore(15);
+            checkAchievements();
+        }
+
+        // Sistema de Feedback
+        function showFeedback(elementId, type, message) {
+            const feedback = document.getElementById(elementId);
+            feedback.className = `feedback ${type} show`;
+            feedback.textContent = message;
+            
+            setTimeout(() => {
+                feedback.classList.remove('show');
+            }, 3000);
+        }
+
+        // Menu de Pontuação
+        function showScoreMenu() {
+            const modal = document.getElementById('scoreMenuModal');
+            modal.classList.add('show');
+            modal.setAttribute('aria-hidden', 'false');
+            document.getElementById('currentScoreDisplay').textContent = score;
+            document.getElementById('playerName').value = playerName;
+        }
+
+        function closeModal(modalId = 'achievementModal') {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('show');
+            modal.setAttribute('aria-hidden', 'true');
+        }
+
+        function confirmResetScore() {
+            if (confirm('Tens a certeza que queres reiniciar a tua pontuação?')) {
+                resetScore();
+            }
+        }
+
+        function resetScore() {
+            score = 0;
+            localStorage.setItem('predicateScore', '0');
+            document.getElementById('score').textContent = '0';
+            document.getElementById('currentScoreDisplay').textContent = '0';
+            
+            userStats = {
+                exercisesCompleted: 0,
+                correctAnswers: 0,
+                streakCount: 0,
+                authorQuotesAnalyzed: 0,
+                unlockedAchievements: [],
+                exercisesByDifficulty: { facil: 0, medio: 0, dificil: 0 }
+            };
+            saveStats();
+            
+            showFeedback('practiceFeedback', 'success', '✓ Pontuação reiniciada!');
+            closeModal('scoreMenuModal');
+        }
+
+        function savePlayerName() {
+            playerName = document.getElementById('playerName').value || 'Anónimo';
+            localStorage.setItem('playerName', playerName);
+            updateLeaderboardEntry();
+        }
+
+        // Exportar/Importar dados
+        function exportData() {
+            const data = {
+                score: score,
+                playerName: playerName,
+                stats: userStats,
+                date: new Date().toISOString()
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = `predicado-${playerName}-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+        }
+
+        function importData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            
+            input.onchange = e => {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = event => {
+                    try {
+                        const data = JSON.parse(event.target.result);
+                        
+                        score = data.score || 0;
+                        playerName = data.playerName || 'Anónimo';
+                        userStats = data.stats || userStats;
+                        
+                        localStorage.setItem('predicateScore', score);
+                        localStorage.setItem('playerName', playerName);
+                        localStorage.setItem('predicateStats', JSON.stringify(userStats));
+                        
+                        document.getElementById('score').textContent = score;
+                        document.getElementById('currentScoreDisplay').textContent = score;
+                        document.getElementById('playerName').value = playerName;
+                        
+                        alert('Dados importados com sucesso!');
+                        closeModal('scoreMenuModal');
+                    } catch (error) {
+                        alert('Erro ao importar dados. Verifica o ficheiro.');
+                    }
+                };
+                
+                reader.readAsText(file);
+            };
+            
+            input.click();
+        }
+
+        // Tabela de Líderes
+        function updateLeaderboard() {
+            const leaderboard = JSON.parse(localStorage.getItem('predicateLeaderboard') || '[]');
+            const content = document.getElementById('leaderboardContent');
+            
+            if (leaderboard.length === 0) {
+                content.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Ainda não há pontuações registadas.</p>';
+                return;
+            }
+            
+            leaderboard.sort((a, b) => b.score - a.score);
+            
+            content.innerHTML = leaderboard.map((entry, index) => `
+                <div class="leaderboard-item">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span class="leaderboard-rank">${index + 1}º</span>
+                        <div>
+                            <strong>${entry.name}</strong>
+                            <div style="font-size: 0.9rem; color: var(--text-secondary);">
+                                ${new Date(entry.date).toLocaleDateString('pt-PT')}
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <strong style="color: var(--primary); font-size: 1.2rem;">${entry.score}</strong>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary);">pontos</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateLeaderboardEntry() {
+            let leaderboard = JSON.parse(localStorage.getItem('predicateLeaderboard') || '[]');
+            
+            const existingIndex = leaderboard.findIndex(entry => entry.name === playerName);
+            
+            if (existingIndex !== -1) {
+                if (score > leaderboard[existingIndex].score) {
+                    leaderboard[existingIndex].score = score;
+                    leaderboard[existingIndex].date = new Date().toISOString();
+                }
+            } else {
+                leaderboard.push({
+                    name: playerName,
+                    score: score,
+                    date: new Date().toISOString()
+                });
+            }
+            
+            localStorage.setItem('predicateLeaderboard', JSON.stringify(leaderboard));
+        }
+
+        function clearLeaderboard() {
+            if (confirm('Tens a certeza que queres limpar toda a tabela de líderes?')) {
+                localStorage.removeItem('predicateLeaderboard');
+                updateLeaderboard();
+            }
+        }
+
+        // Sistema de Conquistas
+        function checkAchievements() {
+            const newAchievements = [];
+            
+            if (userStats.correctAnswers === 1 && !userStats.unlockedAchievements.includes('firstCorrect')) {
+                userStats.unlockedAchievements.push('firstCorrect');
+                newAchievements.push('firstCorrect');
+            }
+            
+            if (userStats.streakCount === 5 && !userStats.unlockedAchievements.includes('streak5')) {
+                userStats.unlockedAchievements.push('streak5');
+                newAchievements.push('streak5');
+            }
+            
+            if (userStats.streakCount === 10 && !userStats.unlockedAchievements.includes('streak10')) {
+                userStats.unlockedAchievements.push('streak10');
+                newAchievements.push('streak10');
+            }
+            
+            if (userStats.exercisesCompleted === 10 && !userStats.unlockedAchievements.includes('complete10')) {
+                userStats.unlockedAchievements.push('complete10');
+                newAchievements.push('complete10');
+            }
+            
+            if (userStats.exercisesCompleted === 50 && !userStats.unlockedAchievements.includes('complete50')) {
+                userStats.unlockedAchievements.push('complete50');
+                newAchievements.push('complete50');
+            }
+            
+            if (userStats.authorQuotesAnalyzed === 10 && !userStats.unlockedAchievements.includes('authorMaster')) {
+                userStats.unlockedAchievements.push('authorMaster');
+                newAchievements.push('authorMaster');
+            }
+            
+            if (newAchievements.length > 0) {
+                showAchievementNotification(newAchievements[0]);
+            }
+        }
+
+        function showAchievementNotification(achievementId) {
+            const achievement = achievements[achievementId];
+            
+            const notification = document.createElement('div');
+            notification.className = 'achievement-notification';
+            notification.innerHTML = `
+                <div class="achievement-icon">${achievement.icon}</div>
+                <div>
+                    <strong>Nova Conquista!</strong><br>
+                    ${achievement.name}
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+            
+            updateScore(25);
+        }
+
+        // Estatísticas
+        function showStatistics() {
+            const modal = document.createElement('div');
+            modal.className = 'modal show';
+            modal.setAttribute('role', 'dialog');
+            modal.setAttribute('aria-labelledby', 'stats-title');
+            
+            const totalExercises = userStats.exercisesCompleted || 1;
+            const accuracy = Math.round((userStats.correctAnswers / totalExercises) * 100) || 0;
+            
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <button class="close-modal" onclick="this.closest('.modal').remove()" aria-label="Fechar modal">&times;</button>
+                    <h2 id="stats-title">📊 As Tuas Estatísticas</h2>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin: 30px 0;">
+                        <div class="stat-card">
+                            <div class="stat-number">${userStats.exercisesCompleted || 0}</div>
+                            <div class="stat-label">Exercícios Completos</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${userStats.correctAnswers || 0}</div>
+                            <div class="stat-label">Respostas Corretas</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${accuracy}%</div>
+                            <div class="stat-label">Taxa de Acerto</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${userStats.streakCount || 0}</div>
+                            <div class="stat-label">Sequência Atual</div>
+                        </div>
+                    </div>
+                    
+                    <h3>📈 Progresso por Dificuldade</h3>
+                    <div style="margin: 20px 0;">
+                        <div style="margin: 10px 0;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>😊 Fácil</span>
+                                <span>${userStats.exercisesByDifficulty?.facil || 0} exercícios</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: ${Math.min((userStats.exercisesByDifficulty?.facil || 0) * 10, 100)}%; background: var(--success);"></div>
+                            </div>
+                        </div>
+                        <div style="margin: 10px 0;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>🤔 Médio</span>
+                                <span>${userStats.exercisesByDifficulty?.medio || 0} exercícios</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: ${Math.min((userStats.exercisesByDifficulty?.medio || 0) * 10, 100)}%; background: var(--warning);"></div>
+                            </div>
+                        </div>
+                        <div style="margin: 10px 0;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>💪 Difícil</span>
+                                <span>${userStats.exercisesByDifficulty?.dificil || 0} exercícios</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: ${Math.min((userStats.exercisesByDifficulty?.dificil || 0) * 10, 100)}%; background: var(--error);"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>🏆 Conquistas</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                        ${Object.entries(achievements).map(([id, achievement]) => `
+                            <div class="achievement-card ${userStats.unlockedAchievements.includes(id) ? 'unlocked' : 'locked'}">
+                                <div class="achievement-icon">${achievement.icon}</div>
+                                <div>
+                                    <strong>${achievement.name}</strong><br>
+                                    <small>${achievement.desc}</small>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Modo Professor
+        function initProfessorMode() {
+            const modal = document.createElement('div');
+            modal.className = 'modal show';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <button class="close-modal" onclick="this.closest('.modal').remove()">&times;</button>
+                    <h2>🎓 Modo Professor</h2>
+                    <p>Cria os teus próprios exercícios personalizados!</p>
+                    
+                    <div style="margin: 20px 0;">
+                        <label for="customSentence" style="display: block; margin-bottom: 5px;">Frase:</label>
+                        <input type="text" id="customSentence" placeholder="Insere uma frase..." 
+                            style="width: 100%; padding: 10px; border: 1px solid var(--border); 
                             border-radius: 8px; background: var(--bg-primary); color: var(--text-primary);">
                     </div>
                     
@@ -1195,7 +1938,7 @@
                             <div class="card" style="margin: 10px 0;">
                                 <p><strong>Frase:</strong> ${ex.sentence}</p>
                                 <p><strong>Predicado:</strong> <span class="predicate">${ex.predicate}</span></p>
-                                <p><strong>Tipo:</strong> ${ex.type}</p>
+                                <p><strong>Tipo:</strong> ${ex.type === 'verbal' ? 'Predicado Verbal' : 'Predicado Nominal'}</p>
                                 <p style="font-size: 0.9rem; color: var(--text-secondary);">
                                     Criado por ${ex.author || 'Anónimo'} em ${new Date(ex.date).toLocaleDateString('pt-PT')}
                                 </p>
@@ -1216,660 +1959,15 @@
                 exercises.splice(index, 1);
                 localStorage.setItem('customPredicateExercises', JSON.stringify(exercises));
                 
-                // Recarregar a vista
                 document.querySelector('.modal').remove();
                 viewCustomExercises();
             }
         }
 
-        // Sistema de som e efeitos
-        const sounds = {
-            correct: new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0kjiSk7n+qBOIAgZaLvt559NAAAQAAAAAQAUAAQAgAABAIAAgAAAAIAAAADAAMAAwAAAAwAAAAABAAEAAAABAAAAAQABAAEAAAABAAAAAQABAAEAAAABAAAAAQABAAEAAAABAAAAAQABAAEAAAABAAAAAQABAAEAAAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAAAA=='),
-            incorrect: new Audio('data:audio/wav;base64,UklGRgwCAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YegBAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMTMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
-        };
-
-        let soundEnabled = localStorage.getItem('soundEnabled') !== 'false';
-
-        function toggleSound() {
-            soundEnabled = !soundEnabled;
-            localStorage.setItem('soundEnabled', soundEnabled);
-            document.getElementById('soundIcon').textContent = soundEnabled ? '🔊' : '🔇';
-        }
-
-        function playSound(type) {
-            if (soundEnabled && sounds[type]) {
-                sounds[type].currentTime = 0;
-                sounds[type].play().catch(() => {});
-            }
-        }
-
-        // Estatísticas detalhadas
-        function showStatistics() {
-            const modal = document.createElement('div');
-            modal.className = 'modal show';
-            modal.setAttribute('role', 'dialog');
-            modal.setAttribute('aria-labelledby', 'stats-title');
-            
-            const totalExercises = userStats.exercisesCompleted || 1;
-            const accuracy = Math.round((userStats.correctAnswers / totalExercises) * 100) || 0;
-            
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <button class="close-modal" onclick="this.closest('.modal').remove()" aria-label="Fechar modal">&times;</button>
-                    <h2 id="stats-title">📊 As Tuas Estatísticas</h2>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin: 30px 0;">
-                        <div class="stat-card">
-                            <div class="stat-number">${userStats.exercisesCompleted || 0}</div>
-                            <div class="stat-label">Exercícios Completos</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">${userStats.correctAnswers || 0}</div>
-                            <div class="stat-label">Respostas Corretas</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">${accuracy}%</div>
-                            <div class="stat-label">Taxa de Acerto</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">${userStats.streakCount || 0}</div>
-                            <div class="stat-label">Sequência Atual</div>
-                        </div>
-                    </div>
-                    
-                    <h3>📈 Progresso por Dificuldade</h3>
-                    <div style="margin: 20px 0;">
-                        <div style="margin: 10px 0;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                <span>😊 Fácil</span>
-                                <span>${userStats.exercisesByDifficulty?.facil || 0} exercícios</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: ${(userStats.exercisesByDifficulty?.facil || 0) * 10}%; background: var(--success);"></div>
-                            </div>
-                        </div>
-                        <div style="margin: 10px 0;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                <span>🤔 Médio</span>
-                                <span>${userStats.exercisesByDifficulty?.medio || 0} exercícios</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: ${(userStats.exercisesByDifficulty?.medio || 0) * 10}%; background: var(--warning);"></div>
-                            </div>
-                        </div>
-                        <div style="margin: 10px 0;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                <span>💪 Difícil</span>
-                                <span>${userStats.exercisesByDifficulty?.dificil || 0} exercícios</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: ${(userStats.exercisesByDifficulty?.dificil || 0) * 10}%; background: var(--error);"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <h3>🏆 Conquistas</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
-                        ${Object.entries(achievements).map(([id, achievement]) => `
-                            <div class="achievement-card ${userStats.unlockedAchievements.includes(id) ? 'unlocked' : 'locked'}">
-                                <div class="achievement-icon">${achievement.icon}</div>
-                                <div>
-                                    <strong>${achievement.name}</strong><br>
-                                    <small>${achievement.desc}</small>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(modal);
-        }
-
-        // Inicialização
-        document.addEventListener('DOMContentLoaded', () => {
-            applyTheme();
-            document.getElementById('score').textContent = score;
-            document.getElementById('soundIcon').textContent = soundEnabled ? '🔊' : '🔇';
-            
-            // Detectar mudanças no tema do sistema
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-                if (currentTheme === 'auto') applyTheme();
-            });
-            
-            // Carregar nome do jogador
-            if (playerName && playerName !== 'Anónimo') {
-                document.getElementById('playerName').value = playerName;
-            }
-        });
-
-        // Atalhos de teclado
-        document.addEventListener('keydown', (e) => {
-            // Enter para próxima questão
-            if (e.key === 'Enter' && document.getElementById('nextBtn').style.display === 'block') {
-                nextPractice();
-            }
-            
-            // Esc para fechar modais
-            if (e.key === 'Escape') {
-                const modal = document.querySelector('.modal.show');
-                if (modal) modal.remove();
-            }
-            
-            // H para ajuda
-            if (e.key === 'h' || e.key === 'H') {
-                showHelp();
-            }
-            
-            // S para estatísticas
-            if (e.key === 's' || e.key === 'S') {
-                showStatistics();
-            }
-        });
-
-        // Prevenir perda de dados ao sair
-        window.addEventListener('beforeunload', () => {
-            saveStats();
-        });
-
-        // Atualizar contadores de exercícios por dificuldade
-        const originalCheckPracticeAnswer = checkPracticeAnswer;
-        window.checkPracticeAnswer = function(selected, correct) {
-            // Incrementar contador de dificuldade
-            if (!userStats.exercisesByDifficulty) {
-                userStats.exercisesByDifficulty = { facil: 0, medio: 0, dificil: 0 };
-            }
-            userStats.exercisesByDifficulty[currentDifficulty]++;
-            
-            // Chamar função original
-            originalCheckPracticeAnswer(selected, correct);
-        };
-    </script>
-</body>
-</html>: 1px solid var(--border); 
-                    border-radius: 8px; background: var(--bg-primary); color: var(--text-primary);"
-                    onchange="savePlayerName()">
-            </div>
-        </div>
-    </div>
-
-    <!-- Botões de ação rápida -->
-    <div class="quick-actions">
-        <button class="quick-btn" onclick="showStatistics()" aria-label="Ver estatísticas">
-            📊
-            <span class="tooltip">Estatísticas</span>
-        </button>
-        <button class="quick-btn" onclick="initProfessorMode()" aria-label="Modo professor">
-            🎓
-            <span class="tooltip">Modo Professor</span>
-        </button>
-        <button class="quick-btn" onclick="toggleSound()" aria-label="Alternar som">
-            <span id="soundIcon" aria-hidden="true">🔊</span>
-            <span class="tooltip">Som</span>
-        </button>
-        <button class="quick-btn" onclick="showHelp()" aria-label="Ajuda">
-            ❓
-            <span class="tooltip">Ajuda</span>
-        </button>
-    </div>
-
-    <!-- Botão de Exportar Relatório -->
-    <button class="export-btn" onclick="exportReport()" aria-label="Exportar relatório">
-        📄 Exportar Relatório
-    </button>
-
-    <script>
-        // Sistema de temas
-        let currentTheme = localStorage.getItem('theme') || 'auto';
-        
-        function applyTheme() {
-            if (currentTheme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                document.getElementById('themeIcon').textContent = '☀️';
-            } else if (currentTheme === 'light') {
-                document.documentElement.setAttribute('data-theme', 'light');
-                document.getElementById('themeIcon').textContent = '🌙';
-            } else {
-                document.documentElement.removeAttribute('data-theme');
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                document.getElementById('themeIcon').textContent = prefersDark ? '☀️' : '🌙';
-            }
-        }
-
-        function toggleTheme() {
-            const themes = ['light', 'dark', 'auto'];
-            const currentIndex = themes.indexOf(currentTheme);
-            currentTheme = themes[(currentIndex + 1) % themes.length];
-            localStorage.setItem('theme', currentTheme);
-            applyTheme();
-        }
-
-        // Navegação por separadores
-        function showTab(event, tabName) {
-            // Remover classes active de todos os tabs e secções
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
-                tab.setAttribute('aria-selected', 'false');
-            });
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Adicionar classe active ao tab clicado e à secção correspondente
-            event.target.classList.add('active');
-            event.target.setAttribute('aria-selected', 'true');
-            document.getElementById(tabName).classList.add('active');
-            
-            // Inicializar conteúdo específico do tab
-            if (tabName === 'pratica') initPractice();
-            if (tabName === 'surpresa') loadSurprise();
-            if (tabName === 'leaderboard') updateLeaderboard();
-        }
-
-        // Dados dos exercícios com níveis de dificuldade
-        const exercisesByDifficulty = {
-            facil: [
-                {
-                    type: 'multiple-choice',
-                    question: 'Identifica o predicado na frase:',
-                    sentence: 'O gato dorme.',
-                    options: [
-                        'O gato',
-                        'dorme',
-                        'gato dorme',
-                        'O'
-                    ],
-                    correct: 1,
-                    explanation: 'O predicado é "dorme" - o verbo que indica a ação.',
-                    hint: 'O predicado contém sempre um verbo.'
-                },
-                {
-                    type: 'multiple-choice',
-                    question: 'Identifica o predicado na frase:',
-                    sentence: 'A Maria está feliz.',
-                    options: [
-                        'A Maria',
-                        'está feliz',
-                        'feliz',
-                        'está'
-                    ],
-                    correct: 1,
-                    explanation: 'O predicado é "está feliz" - verbo copulativo + predicativo do sujeito.',
-                    hint: 'Com verbos como "estar", o predicado inclui o que vem depois.'
-                }
-            ],
-            medio: [
-                {
-                    type: 'multiple-choice',
-                    question: 'Identifica o predicado na frase:',
-                    sentence: 'Os alunos estudaram para o exame durante toda a semana.',
-                    options: [
-                        'Os alunos',
-                        'estudaram para o exame durante toda a semana',
-                        'para o exame',
-                        'durante toda a semana'
-                    ],
-                    correct: 1,
-                    explanation: 'O predicado é "estudaram para o exame durante toda a semana" - inclui o verbo e todos os seus complementos e modificadores.',
-                    hint: 'O predicado inclui tudo menos o sujeito.'
-                },
-                {
-                    type: 'identify-parts',
-                    question: 'Identifica os componentes do predicado:',
-                    sentence: 'A professora explicou a matéria aos alunos pacientemente.',
-                    predicate: 'explicou a matéria aos alunos pacientemente',
-                    parts: {
-                        verbo: 'explicou',
-                        cd: 'a matéria',
-                        ci: 'aos alunos',
-                        adjunto: 'pacientemente'
-                    },
-                    hint: 'CD responde a "o quê?", CI responde a "a quem?"'
-                }
-            ],
-            dificil: [
-                {
-                    type: 'complex-analysis',
-                    question: 'Analisa completamente este predicado complexo:',
-                    sentence: 'O escritor dedicou o seu último livro aos leitores fiéis no lançamento.',
-                    components: {
-                        verbo: 'dedicou',
-                        cd: 'o seu último livro',
-                        ci: 'aos leitores fiéis',
-                        adjunto_tempo: 'no lançamento'
-                    },
-                    hint: 'Identifica cada elemento e sua função sintática.'
-                },
-                {
-                    type: 'transform',
-                    question: 'Transforma o predicado verbal em nominal:',
-                    original: 'O tempo melhorou.',
-                    options: [
-                        'O tempo está melhor.',
-                        'O tempo vai melhorar.',
-                        'O tempo melhorou muito.',
-                        'O tempo não melhorou.'
-                    ],
-                    correct: 0,
-                    explanation: 'Transformámos o verbo "melhorou" em verbo copulativo "está" + predicativo "melhor".',
-                    hint: 'Usa um verbo copulativo + adjetivo.'
-                }
-            ]
-        };
-
-        const challengeExercises = [
-            {
-                sentence: 'O Presidente da República promulgou a nova lei ontem no Palácio de Belém.',
-                task: 'Identifica todos os elementos do predicado.',
-                timer: 30
-            },
-            {
-                sentence: 'Os cientistas portugueses descobriram uma nova espécie marinha.',
-                task: 'Classifica o tipo de predicado e identifica os complementos.',
-                timer: 25
-            },
-            {
-                sentence: 'Lisboa tornou-se uma cidade cosmopolita.',
-                task: 'Que tipo de predicado é este? Justifica.',
-                timer: 20
-            }
-        ];
-
-        const authorQuotes = [
-            {
-                quote: 'As palavras são como as moedas: uma pode valer por muitas, como muitas não podem valer por uma.',
-                author: 'Francisco Rodrigues Lobo',
-                sentence: 'As palavras são como as moedas.',
-                predicate: 'são como as moedas',
-                type: 'nominal',
-                analysis: 'Predicado nominal com verbo copulativo "são" e predicativo do sujeito "como as moedas".'
-            },
-            {
-                quote: 'O meu coração transbordava de ternura e de tristeza.',
-                author: 'Camilo Castelo Branco',
-                sentence: 'O meu coração transbordava de ternura e de tristeza.',
-                predicate: 'transbordava de ternura e de tristeza',
-                type: 'verbal',
-                analysis: 'Predicado verbal com complemento oblíquo "de ternura e de tristeza".'
-            },
-            {
-                quote: 'Tudo vale a pena quando a alma não é pequena.',
-                author: 'Fernando Pessoa',
-                sentence: 'Tudo vale a pena quando a alma não é pequena.',
-                predicate: 'vale a pena',
-                type: 'verbal',
-                analysis: 'Predicado verbal com expressão idiomática "vale a pena" + oração subordinada temporal.'
-            },
-            {
-                quote: 'A saudade é a presença dos ausentes.',
-                author: 'Padre António Vieira',
-                sentence: 'A saudade é a presença dos ausentes.',
-                predicate: 'é a presença dos ausentes',
-                type: 'nominal',
-                analysis: 'Predicado nominal: verbo copulativo "é" + predicativo "a presença dos ausentes".'
-            },
-            {
-                quote: 'O mar salgado, quanto do teu sal são lágrimas de Portugal!',
-                author: 'Fernando Pessoa',
-                sentence: 'Quanto do teu sal são lágrimas de Portugal!',
-                predicate: 'são lágrimas de Portugal',
-                type: 'nominal',
-                analysis: 'Predicado nominal invertido: "são" (verbo copulativo) + "lágrimas de Portugal" (predicativo).'
-            },
-            {
-                quote: 'Navegar é preciso; viver não é preciso.',
-                author: 'Fernando Pessoa',
-                sentence: 'Navegar é preciso.',
-                predicate: 'é preciso',
-                type: 'nominal',
-                analysis: 'Predicado nominal com sujeito oracional: "é" + "preciso" (predicativo do sujeito).'
-            },
-            {
-                quote: 'Lisboa oscila como uma grande barcaça amarrada no Tejo.',
-                author: 'José Cardoso Pires',
-                sentence: 'Lisboa oscila como uma grande barcaça amarrada no Tejo.',
-                predicate: 'oscila como uma grande barcaça amarrada no Tejo',
-                type: 'verbal',
-                analysis: 'Predicado verbal com comparação: verbo "oscila" + adjunto adverbial de modo.'
-            },
-            {
-                quote: 'As casas espiam-nos pelas janelas.',
-                author: 'Eugénio de Andrade',
-                sentence: 'As casas espiam-nos pelas janelas.',
-                predicate: 'espiam-nos pelas janelas',
-                type: 'verbal',
-                analysis: 'Predicado verbal: "espiam" + "-nos" (CD) + "pelas janelas" (adjunto de lugar).'
-            }
-        ];
-
-        // Variáveis globais
-        let score = parseInt(localStorage.getItem('predicateScore') || '0');
-        let currentPractice = 0;
-        let challengeTimer = null;
-        let challengeActive = false;
-        let draggedElement = null;
-        let currentDifficulty = 'medio';
-        let practiceExercises = exercisesByDifficulty.medio;
-        let playerName = localStorage.getItem('playerName') || 'Anónimo';
-
-        // Sistema de pontuação
-        function updateScore(points) {
-            score += points;
-            localStorage.setItem('predicateScore', score);
-            document.getElementById('score').textContent = score;
-            document.getElementById('currentScoreDisplay').textContent = score;
-            
-            // Animação
-            const scoreDisplay = document.querySelector('.score-display');
-            scoreDisplay.style.transform = 'scale(1.2)';
-            setTimeout(() => {
-                scoreDisplay.style.transform = 'scale(1)';
-            }, 300);
-            
-            // Atualizar leaderboard
-            updateLeaderboardEntry();
-        }
-
-        // Menu de Pontuação
-        function showScoreMenu() {
-            const modal = document.getElementById('scoreMenuModal');
-            modal.classList.add('show');
-            modal.setAttribute('aria-hidden', 'false');
-            document.getElementById('currentScoreDisplay').textContent = score;
-            document.getElementById('playerName').value = playerName;
-        }
-
-        function closeModal(modalId = 'achievementModal') {
-            const modal = document.getElementById(modalId);
-            modal.classList.remove('show');
-            modal.setAttribute('aria-hidden', 'true');
-        }
-
-        function confirmResetScore() {
-            if (confirm('Tens a certeza que queres reiniciar a tua pontuação? Esta ação não pode ser desfeita.')) {
-                resetScore();
-            }
-        }
-
-        function resetScore() {
-            score = 0;
-            localStorage.setItem('predicateScore', '0');
-            document.getElementById('score').textContent = '0';
-            document.getElementById('currentScoreDisplay').textContent = '0';
-            
-            // Reset estatísticas
-            userStats = {
-                exercisesCompleted: 0,
-                correctAnswers: 0,
-                streakCount: 0,
-                authorQuotesAnalyzed: 0,
-                unlockedAchievements: []
-            };
-            saveStats();
-            
-            showFeedback('practiceFeedback', 'success', '✓ Pontuação reiniciada com sucesso!');
-            closeModal('scoreMenuModal');
-        }
-
-        // Sistema de dificuldade
-        function setDifficulty(level) {
-            currentDifficulty = level;
-            practiceExercises = exercisesByDifficulty[level];
-            
-            // Atualizar botões
-            document.querySelectorAll('.difficulty-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Reiniciar prática
-            currentPractice = 0;
-            loadPracticeExercise();
-        }
-
-        // Sistema de dicas
-        function showHint() {
-            const exercise = practiceExercises[currentPractice];
-            if (exercise.hint) {
-                document.getElementById('hintText').textContent = exercise.hint;
-                document.getElementById('hintBox').classList.add('show');
-                
-                // Penalização pequena por usar dica
-                updateScore(-2);
-            }
-        }
-
-        // Exportar/Importar dados
-        function exportData() {
-            const data = {
-                score: score,
-                playerName: playerName,
-                stats: userStats,
-                customExercises: localStorage.getItem('customPredicateExercises'),
-                date: new Date().toISOString()
-            };
-            
-            const dataStr = JSON.stringify(data, null, 2);
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
-            
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(dataBlob);
-            link.download = `mestre-predicado-${playerName}-${new Date().toISOString().split('T')[0]}.json`;
-            link.click();
-        }
-
-        function importData() {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            
-            input.onchange = e => {
-                const file = e.target.files[0];
-                const reader = new FileReader();
-                
-                reader.onload = event => {
-                    try {
-                        const data = JSON.parse(event.target.result);
-                        
-                        score = data.score || 0;
-                        playerName = data.playerName || 'Anónimo';
-                        userStats = data.stats || userStats;
-                        
-                        localStorage.setItem('predicateScore', score);
-                        localStorage.setItem('playerName', playerName);
-                        localStorage.setItem('predicateStats', JSON.stringify(userStats));
-                        
-                        if (data.customExercises) {
-                            localStorage.setItem('customPredicateExercises', data.customExercises);
-                        }
-                        
-                        document.getElementById('score').textContent = score;
-                        document.getElementById('currentScoreDisplay').textContent = score;
-                        document.getElementById('playerName').value = playerName;
-                        
-                        alert('Dados importados com sucesso!');
-                        closeModal('scoreMenuModal');
-                    } catch (error) {
-                        alert('Erro ao importar dados. Verifica o ficheiro.');
-                    }
-                };
-                
-                reader.readAsText(file);
-            };
-            
-            input.click();
-        }
-
-        function savePlayerName() {
-            playerName = document.getElementById('playerName').value || 'Anónimo';
-            localStorage.setItem('playerName', playerName);
-            updateLeaderboardEntry();
-        }
-
-        // Tabela de Líderes
-        function updateLeaderboard() {
-            const leaderboard = JSON.parse(localStorage.getItem('predicateLeaderboard') || '[]');
-            const content = document.getElementById('leaderboardContent');
-            
-            if (leaderboard.length === 0) {
-                content.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Ainda não há pontuações registadas.</p>';
-                return;
-            }
-            
-            // Ordenar por pontuação
-            leaderboard.sort((a, b) => b.score - a.score);
-            
-            content.innerHTML = leaderboard.map((entry, index) => `
-                <div class="leaderboard-item">
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <span class="leaderboard-rank">${index + 1}º</span>
-                        <div>
-                            <strong>${entry.name}</strong>
-                            <div style="font-size: 0.9rem; color: var(--text-secondary);">
-                                ${new Date(entry.date).toLocaleDateString('pt-PT')}
-                            </div>
-                        </div>
-                    </div>
-                    <div style="text-align: right;">
-                        <strong style="color: var(--primary); font-size: 1.2rem;">${entry.score}</strong>
-                        <div style="font-size: 0.9rem; color: var(--text-secondary);">pontos</div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function updateLeaderboardEntry() {
-            let leaderboard = JSON.parse(localStorage.getItem('predicateLeaderboard') || '[]');
-            
-            // Procurar entrada existente do jogador
-            const existingIndex = leaderboard.findIndex(entry => entry.name === playerName);
-            
-            if (existingIndex !== -1) {
-                // Atualizar se a nova pontuação for maior
-                if (score > leaderboard[existingIndex].score) {
-                    leaderboard[existingIndex].score = score;
-                    leaderboard[existingIndex].date = new Date().toISOString();
-                }
-            } else {
-                // Adicionar nova entrada
-                leaderboard.push({
-                    name: playerName,
-                    score: score,
-                    date: new Date().toISOString()
-                });
-            }
-            
-            localStorage.setItem('predicateLeaderboard', JSON.stringify(leaderboard));
-        }
-
-        function clearLeaderboard() {
-            if (confirm('Tens a certeza que queres limpar toda a tabela de líderes?')) {
-                localStorage.removeItem('predicateLeaderboard');
-                updateLeaderboard();
-            }
-        }
-
         // Exportar Relatório
         function exportReport() {
+            const accuracy = Math.round((userStats.correctAnswers / (userStats.exercisesCompleted || 1)) * 100);
+            
             const report = `
 RELATÓRIO DE PROGRESSO - MESTRE DO PREDICADO
 ===========================================
@@ -1882,12 +1980,150 @@ ESTATÍSTICAS DETALHADAS
 ----------------------
 Exercícios Completados: ${userStats.exercisesCompleted || 0}
 Respostas Corretas: ${userStats.correctAnswers || 0}
-Taxa de Acerto: ${Math.round((userStats.correctAnswers / (userStats.exercisesCompleted || 1)) * 100)}%
+Taxa de Acerto: ${accuracy}%
 Sequência Máxima: ${userStats.streakCount || 0}
 Citações Analisadas: ${userStats.authorQuotesAnalyzed || 0}
+
+PROGRESSO POR DIFICULDADE
+------------------------
+Fácil: ${userStats.exercisesByDifficulty?.facil || 0} exercícios
+Médio: ${userStats.exercisesByDifficulty?.medio || 0} exercícios
+Difícil: ${userStats.exercisesByDifficulty?.dificil || 0} exercícios
 
 CONQUISTAS DESBLOQUEADAS
 -----------------------
 ${userStats.unlockedAchievements.map(id => {
     const achievement = achievements[id];
     return `✓ ${achievement.name} - ${achievement.desc}`;
+}).join('\n') || 'Nenhuma conquista desbloqueada ainda.'}
+
+NOTAS DO PROFESSOR
+-----------------
+${localStorage.getItem('professorNotes') || 'Sem notas registadas.'}
+`;
+            
+            const blob = new Blob([report], { type: 'text/plain;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `relatorio-predicado-${playerName}-${new Date().toISOString().split('T')[0]}.txt`;
+            link.click();
+        }
+
+        // Ajuda
+        function showHelp() {
+            const modal = document.createElement('div');
+            modal.className = 'modal show';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <button class="close-modal" onclick="this.closest('.modal').remove()">&times;</button>
+                    <h2>❓ Ajuda</h2>
+                    
+                    <h3>Como Jogar</h3>
+                    <p>O Mestre do Predicado ajuda-te a aprender sobre predicados em Português Europeu.</p>
+                    
+                    <h3>Modos de Jogo</h3>
+                    <ul>
+                        <li><strong>📚 Teoria:</strong> Aprende os conceitos básicos sobre predicados</li>
+                        <li><strong>✏️ Prática Guiada:</strong> Exercícios com dicas e explicações</li>
+                        <li><strong>🎯 Desafio:</strong> Teste cronometrado para ganhar pontos extra</li>
+                        <li><strong>✨ Desafio Surpresa:</strong> Analisa frases de autores portugueses</li>
+                    </ul>
+                    
+                    <h3>Sistema de Pontos</h3>
+                    <ul>
+                        <li>Resposta correta: +10 pontos</li>
+                        <li>Usar dica: -2 pontos</li>
+                        <li>Modo desafio: +20 pontos por resposta</li>
+                        <li>Análise de citações: +15 pontos</li>
+                        <li>Conquistas: +25 pontos</li>
+                    </ul>
+                    
+                    <h3>Atalhos de Teclado</h3>
+                    <ul>
+                        <li><strong>Enter:</strong> Próxima questão</li>
+                        <li><strong>Esc:</strong> Fechar janelas</li>
+                        <li><strong>H:</strong> Mostrar ajuda</li>
+                        <li><strong>S:</strong> Ver estatísticas</li>
+                    </ul>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Sistema de som
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            localStorage.setItem('soundEnabled', soundEnabled);
+            document.getElementById('soundIcon').textContent = soundEnabled ? '🔊' : '🔇';
+        }
+
+        function playSound(type) {
+            if (!soundEnabled) return;
+            
+            const audio = new Audio();
+            if (type === 'correct') {
+                audio.src = 'data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBh1yuOju0ncOs2WBAf8=';
+            } else {
+                audio.src = 'data:audio/wav;base64,UklGRuYBAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQIBAABoYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBg';
+            }
+            
+            audio.play().catch(() => {});
+        }
+
+        // Guardar estatísticas
+        function saveStats() {
+            localStorage.setItem('predicateStats', JSON.stringify(userStats));
+        }
+
+        // Função de conclusão
+        function showCompletionMessage() {
+            const modal = document.createElement('div');
+            modal.className = 'modal show';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <button class="close-modal" onclick="this.closest('.modal').remove()">&times;</button>
+                    <div class="achievement">
+                        <div class="trophy">🎉</div>
+                        <h2>Parabéns!</h2>
+                        <p>Completaste todos os exercícios deste nível!</p>
+                        <div class="actions">
+                            <button class="btn" onclick="this.closest('.modal').remove(); setDifficulty('medio')">
+                                Próximo Nível
+                            </button>
+                            <button class="btn btn-secondary" onclick="this.closest('.modal').remove(); showTab(event, 'desafio')">
+                                Modo Desafio
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Atalhos de teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && document.getElementById('nextBtn').style.display === 'block') {
+                nextPractice();
+            }
+            
+            if (e.key === 'Escape') {
+                const modal = document.querySelector('.modal.show');
+                if (modal) modal.remove();
+            }
+            
+            if (e.key === 'h' || e.key === 'H') {
+                showHelp();
+            }
+            
+            if (e.key === 's' || e.key === 'S') {
+                showStatistics();
+            }
+        });
+
+        // Prevenir perda de dados
+        window.addEventListener('beforeunload', () => {
+            saveStats();
+        });
+    </script>
+</body>
+</html>
