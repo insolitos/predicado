@@ -1408,6 +1408,32 @@
                     explanation = `Análise incorreta. Resposta correta: Verbo: ${cs.verbo}, CD: ${cs.cd}, CI: ${cs.ci}.`;
                 }
 
+            } else if (exercise.type === 'identify-parts') {
+                isCorrect = true; // Assume correct initially
+                let correctPartsStrings = [];
+                for (const partName in exercise.parts) {
+                    const inputId = `identifyparts-${partName}`;
+                    const userInput = document.getElementById(inputId).value.trim().toLowerCase();
+                    const correctAnswer = exercise.parts[partName].toLowerCase();
+                    const inputElement = document.getElementById(inputId);
+
+                    inputElement.classList.remove('correct', 'incorrect'); // Reset classes
+
+                    if (userInput === correctAnswer) {
+                        inputElement.classList.add('correct');
+                    } else {
+                        inputElement.classList.add('incorrect');
+                        isCorrect = false;
+                    }
+                    const capitalizedPartName = partName.charAt(0).toUpperCase() + partName.slice(1);
+                    correctPartsStrings.push(`${capitalizedPartName}: ${exercise.parts[partName]}`);
+                }
+
+                if (isCorrect) {
+                    explanation = "Análise correta!";
+                } else {
+                    explanation = `Análise incorreta. Respostas corretas: ${correctPartsStrings.join(', ')}.`;
+                }
             } else if (exercise.type === 'multiple-choice' || exercise.type === 'transform') {
                 const cards = document.querySelectorAll('.option-card');
                 cards.forEach(card => card.classList.add('disabled'));
