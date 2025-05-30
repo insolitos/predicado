@@ -819,6 +819,16 @@
                 page-break-inside: avoid;
             }
         }
+
+        .analysis-input.correct {
+            border-color: var(--success);
+            background-color: rgba(16, 185, 129, 0.1);
+        }
+
+        .analysis-input.incorrect {
+            border-color: var(--error);
+            background-color: rgba(239, 68, 68, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -1343,10 +1353,10 @@
             
             let content = `
                 <h3>${exercise.question}</h3>
-                <div class="sentence-highlight">${exercise.sentence}</div>
+                <div class="sentence-highlight">${exercise.sentence || exercise.original}</div>
             `;
             
-            if (exercise.type === 'multiple-choice') {
+            if (exercise.type === 'multiple-choice' || exercise.type === 'transform') {
                 content += '<div class="options-grid">';
                 exercise.options.forEach((option, index) => {
                     content += `
@@ -1356,28 +1366,72 @@
                     `;
                 });
                 content += '</div>';
+            } else if (exercise.type === 'complex-analysis') {
+                content += `
+                    <div style="margin-top: 20px;">
+                        <label for="analysisVerbo">Verbo:</label>
+                        <input type="text" id="analysisVerbo" class="analysis-input" style="width: 100%; padding: 10px; margin-bottom:10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-primary); color: var(--text-primary);">
+                        <label for="analysisCD">Complemento Direto:</label>
+                        <input type="text" id="analysisCD" class="analysis-input" style="width: 100%; padding: 10px; margin-bottom:10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-primary); color: var(--text-primary);">
+                        <label for="analysisCI">Complemento Indireto:</label>
+                        <input type="text" id="analysisCI" class="analysis-input" style="width: 100%; padding: 10px; margin-bottom:10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-primary); color: var(--text-primary);">
+                        <button class="btn" onclick="checkPracticeAnswer()" style="margin-top: 10px;">Verificar Análise</button>
+                    </div>
+                `;
             }
             
             document.getElementById('practiceContent').innerHTML = content;
         }
 
         function checkPracticeAnswer(selected, correct) {
-            const cards = document.querySelectorAll('.option-card');
-            cards.forEach(card => card.classList.add('disabled'));
-            
-            if (selected === correct) {
-                cards[selected].classList.add('correct');
-                showFeedback('practiceFeedback', 'success', 
-                    `✓ Correto! ${practiceExercises[currentPractice].explanation}`);
+            const exercise = practiceExercises[currentPractice];
+            let isCorrect = false;
+            let explanation = '';
+
+            if (exercise.type === 'complex-analysis') {
+                const userVerbo = document.getElementById('analysisVerbo').value.trim().toLowerCase();
+                const userCD = document.getElementById('analysisCD').value.trim().toLowerCase();
+                const userCI = document.getElementById('analysisCI').value.trim().toLowerCase();
+                const cs = exercise.components; // correct components
+
+                isCorrect = userVerbo === cs.verbo.toLowerCase() &&
+                            userCD === cs.cd.toLowerCase() &&
+                            userCI === cs.ci.toLowerCase();
+
+                document.getElementById('analysisVerbo').classList.add(userVerbo === cs.verbo.toLowerCase() ? 'correct' : 'incorrect');
+                document.getElementById('analysisCD').classList.add(userCD === cs.cd.toLowerCase() ? 'correct' : 'incorrect');
+                document.getElementById('analysisCI').classList.add(userCI === cs.ci.toLowerCase() ? 'correct' : 'incorrect');
+
+                if (isCorrect) {
+                    explanation = "Análise correta!";
+                } else {
+                    explanation = `Análise incorreta. Resposta correta: Verbo: ${cs.verbo}, CD: ${cs.cd}, CI: ${cs.ci}.`;
+                }
+
+            } else if (exercise.type === 'multiple-choice' || exercise.type === 'transform') {
+                const cards = document.querySelectorAll('.option-card');
+                cards.forEach(card => card.classList.add('disabled'));
+                if (selected === correct) {
+                    cards[selected].classList.add('correct');
+                    isCorrect = true;
+                } else {
+                    cards[selected].classList.add('incorrect');
+                    if (cards[correct]) { // Check if correct index is valid
+                         cards[correct].classList.add('correct');
+                    }
+                }
+                explanation = exercise.explanation; // Original explanation for these types
+            }
+
+            // Common feedback logic
+            if (isCorrect) {
+                showFeedback('practiceFeedback', 'success', `✓ Correto! ${explanation}`);
                 updateScore(10);
                 userStats.correctAnswers++;
                 userStats.streakCount++;
                 playSound('correct');
             } else {
-                cards[selected].classList.add('incorrect');
-                cards[correct].classList.add('correct');
-                showFeedback('practiceFeedback', 'error', 
-                    `✗ Incorreto. ${practiceExercises[currentPractice].explanation}`);
+                showFeedback('practiceFeedback', 'error', `✗ Incorreto. ${explanation}`);
                 userStats.streakCount = 0;
                 playSound('incorrect');
             }
