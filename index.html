@@ -1077,6 +1077,18 @@
     </button>
 
     <script>
+        function escapeHtmlAttr(unsafe) {
+            if (typeof unsafe !== 'string') {
+                return unsafe; // Retorna o valor original se não for uma string
+            }
+            return unsafe
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;"); // Essencial para atributos onclick delimitados por aspas simples
+        }
+
         // Dados dos exercícios
         const exercisesByDifficulty = {
             facil: [
@@ -1547,6 +1559,10 @@
         // Modo Surpresa
         function loadSurprise() {
             const quote = authorQuotes[Math.floor(Math.random() * authorQuotes.length)];
+
+            const escapedPredicate = escapeHtmlAttr(quote.predicate);
+            const escapedType = escapeHtmlAttr(quote.type);
+            const escapedAnalysis = escapeHtmlAttr(quote.analysis);
             
             document.getElementById('surpriseContent').innerHTML = `
                 <div class="author-quote">
@@ -1558,7 +1574,7 @@
                 <div class="sentence-highlight">${quote.sentence}</div>
                 
                 <div class="options-grid" style="margin-top: 20px;">
-                    <div class="option-card" onclick="revealAnalysis('${quote.predicate}', '${quote.type}', '${quote.analysis}')">
+                    <div class="option-card" onclick="revealAnalysis('${escapedPredicate}', '${escapedType}', '${escapedAnalysis}')">
                         Ver Análise
                     </div>
                 </div>
@@ -1569,15 +1585,28 @@
         }
 
         function revealAnalysis(predicate, type, analysis) {
-            document.getElementById('surpriseContent').innerHTML += `
-                <div class="card" style="margin-top: 20px;">
-                    <h4>Análise:</h4>
-                    <p><strong>Predicado:</strong> <span class="predicate">${predicate}</span></p>
-                    <p><strong>Tipo:</strong> ${type === 'nominal' ? 'Predicado Nominal' : 'Predicado Verbal'}</p>
-                    <p><strong>Explicação:</strong> ${analysis}</p>
-                </div>
+            const surpriseContentEl = document.getElementById('surpriseContent');
+            if (!surpriseContentEl) {
+                console.error("Elemento #surpriseContent não encontrado!");
+                return;
+            }
+
+            const analysisDiv = document.createElement('div');
+            analysisDiv.className = 'card';
+            analysisDiv.style.marginTop = '20px';
+
+            const displayPredicate = escapeHtmlAttr(predicate);
+            const displayAnalysis = escapeHtmlAttr(analysis);
+
+            analysisDiv.innerHTML = `
+                <h4>Análise:</h4>
+                <p><strong>Predicado:</strong> <span class="predicate">${displayPredicate}</span></p>
+                <p><strong>Tipo:</strong> ${type === 'nominal' ? 'Predicado Nominal' : 'Predicado Verbal'}</p>
+                <p><strong>Explicação:</strong> ${displayAnalysis}</p>
             `;
             
+            surpriseContentEl.appendChild(analysisDiv);
+
             updateScore(15);
             checkAchievements();
         }
