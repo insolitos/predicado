@@ -1139,11 +1139,11 @@
                     hint: 'O predicado inclui tudo menos o sujeito.'
                 },
                 {
-                    type: 'identify-parts',
+                    type: 'complex-analysis', // Alterado
                     question: 'Identifica os componentes do predicado:',
                     sentence: 'A professora explicou a matéria aos alunos.',
-                    predicate: 'explicou a matéria aos alunos',
-                    parts: {
+                    // 'predicate' removido pois não é usado por complex-analysis em loadPracticeExercise
+                    components: { // Renomeado de 'parts'
                         verbo: 'explicou',
                         cd: 'a matéria',
                         ci: 'aos alunos'
